@@ -8,7 +8,6 @@ public class JugadorRVModal implements Parcelable {
     private String jugadorName;
     private String jugadorDescription;
     private String jugadorPrice;
-    private String bestPosicion;
     private String jugadorImg;
     private String jugadorLink;
     private String jugadorId;
@@ -33,7 +32,6 @@ public class JugadorRVModal implements Parcelable {
         jugadorId = in.readString();
         jugadorDescription = in.readString();
         jugadorPrice = in.readString();
-        bestPosicion = in.readString();
         jugadorImg = in.readString();
         jugadorLink = in.readString();
     }
@@ -75,13 +73,7 @@ public class JugadorRVModal implements Parcelable {
         this.jugadorPrice = jugadorPrice;
     }
 
-    public String getBestPosicion() {
-        return bestPosicion;
-    }
 
-    public void setBestPosicion(String bestPosicion) {
-        this.bestPosicion = bestPosicion;
-    }
 
     public String getJugadorImg() {
         return jugadorImg;
@@ -100,12 +92,11 @@ public class JugadorRVModal implements Parcelable {
     }
 
 
-    public JugadorRVModal(String jugadorId, String jugadorName, String jugadorDescription, String jugadorPrice, String bestPosicion, String jugadorImg, String jugadorLink) {
+    public JugadorRVModal(String jugadorId, String jugadorName, String jugadorDescription, String jugadorPrice,  String jugadorImg, String jugadorLink) {
         this.jugadorName = jugadorName;
         this.jugadorId = jugadorId;
         this.jugadorDescription = jugadorDescription;
         this.jugadorPrice = jugadorPrice;
-        this.bestPosicion = bestPosicion;
         this.jugadorImg = jugadorImg;
         this.jugadorLink = jugadorLink;
     }
@@ -121,7 +112,6 @@ public class JugadorRVModal implements Parcelable {
         dest.writeString(jugadorId);
         dest.writeString(jugadorDescription);
         dest.writeString(jugadorPrice);
-        dest.writeString(bestPosicion);
         dest.writeString(jugadorImg);
         dest.writeString(jugadorLink);
     }

@@ -36,38 +36,29 @@
     <!--text view for displaying jugadordescription-->
     <TextView
         android:id="@+id/idTVJugadorDesc"
-        android:layout_width="match_parent"
+        android:layout_width="297dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/idTVJugadorName"
-        android:layout_margin="4dp"
+        android:layout_marginStart="-2dp"
+        android:layout_marginLeft="-2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         android:layout_toEndOf="@id/idIVJugador"
         android:layout_toRightOf="@id/idIVJugador"
         android:padding="3dp"
         android:text="Description"
         android:textColor="@color/white" />
 
-    <!--text view for displaying jugador best Posicion for-->
-    <TextView
-        android:id="@+id/idTVPosicion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/idTVJugadorDesc"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
-        android:layout_toRightOf="@id/idIVJugador"
-        android:padding="3dp"
-        android:text="Pozicion:"
-        android:textColor="@color/white" />
+
+
 
     <!--text view for displaying jugador price-->
     <TextView
         android:id="@+id/idTVJugadorPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/idTVPosicion"
-        android:layout_marginStart="4dp"
+        android:layout_below="@id/idTVJugadorDesc"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
