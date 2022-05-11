@@ -17,6 +17,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class AddJugadorActivity extends AppCompatActivity {
 
     //creando variables para su botón, edite texto, base de datos firebase, referencia de base de datos, barra de progreso.
@@ -30,6 +35,14 @@ public class AddJugadorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //cojer la fecha de hoy
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+        String formattedDate = df.format(c);
+
+
         setContentView(R.layout.activity_add_jugador);
         //initializando todas las variables.
         addJugadorBtn = findViewById(R.id.idBtnAddJugador);
