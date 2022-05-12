@@ -17,11 +17,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class AddJugadorActivity extends AppCompatActivity {
 
     //creando variables para su botón, edite texto, base de datos firebase, referencia de base de datos, barra de progreso.
     private Button addJugadorBtn;
-    private TextInputEditText jugadorNameEdt, jugadorDescEdt, jugadorPriceEdt, bestPosicionEdt, jugadorImgEdt, jugadorLinkEdt;
+    private TextInputEditText jugadorNameEdt, jugadorDescEdt, jugadorPriceEdt,  jugadorImgEdt, jugadorLinkEdt;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private ProgressBar loadingPB;
@@ -30,13 +35,20 @@ public class AddJugadorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //cojer la fecha de hoy
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+        String formattedDate = df.format(c);
+
+
         setContentView(R.layout.activity_add_jugador);
         //initializando todas las variables.
         addJugadorBtn = findViewById(R.id.idBtnAddJugador);
         jugadorNameEdt = findViewById(R.id.idEdtJugadorName);
         jugadorDescEdt = findViewById(R.id.idEdtJugadorDescription);
         jugadorPriceEdt = findViewById(R.id.idEdtJugadorPrice);
-        bestPosicionEdt = findViewById(R.id.idEdtPosicion);
         jugadorImgEdt = findViewById(R.id.idEdtJugadorImageLink);
         jugadorLinkEdt = findViewById(R.id.idEdtJugadorLink);
         loadingPB = findViewById(R.id.idPBLoading);
@@ -52,12 +64,11 @@ public class AddJugadorActivity extends AppCompatActivity {
                 String jugadorName = jugadorNameEdt.getText().toString();
                 String jugadorDesc = jugadorDescEdt.getText().toString();
                 String jugadorPrice = jugadorPriceEdt.getText().toString();
-                String bestPosicion = bestPosicionEdt.getText().toString();
                 String jugadorImg = jugadorImgEdt.getText().toString();
                 String jugadorLink = jugadorLinkEdt.getText().toString();
                 jugadorID = jugadorName;
                 //en la línea de abajo estamos pasando todos los datos a nuestra clase modal.
-                JugadorRVModal jugadorRVModal = new JugadorRVModal(jugadorID, jugadorName, jugadorDesc, jugadorPrice, bestPosicion, jugadorImg, jugadorLink);
+                JugadorRVModal jugadorRVModal = new JugadorRVModal(jugadorID, jugadorName, jugadorDesc, jugadorPrice,  jugadorImg, jugadorLink);
                 //en la línea de abajo estamos llamando a un evento de valor agregado para pasar datos a la base de datos de firebase.
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
