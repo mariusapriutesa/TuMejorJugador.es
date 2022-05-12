@@ -45,7 +45,7 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
         //configurando datos para nuestro elemento de RecyclerView en la línea de abajo.
         JugadorRVModal jugadorRVModal = jugadorRVModalArrayList.get(position);
         holder.jugadorTV.setText(jugadorRVModal.getJugadorName());
-        holder.jugadorPriceTV.setText("Precio. " + jugadorRVModal.getJugadorPrice());
+        holder.jugadorPriceTV.setText("" + jugadorRVModal.getJugadorPrice());
         Picasso.get().load(jugadorRVModal.getJugadorImg()).into(holder.jugadorIV);
         // agregando animación al los elementos de recycleView en la línea de abajo.
         setAnimation(holder.itemView, position);

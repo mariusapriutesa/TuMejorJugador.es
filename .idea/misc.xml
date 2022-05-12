@@ -3,22 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/drawable-v24/button_back.xml" value="0.1" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/drawable-v24/ic_add.xml" value="0.1" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/drawable-v24/ic_delete.xml" value="0.1" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/drawable-v24/ic_edit.xml" value="0.1" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.135" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/drawable-v24/ic_logout.xml" value="0.135" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/drawable-v24/progress_back.xml" value="0.135" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/drawable-v24/rounded_drawable.xml" value="0.1" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/layout/activity_add_jugador.xml" value="0.4" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/layout/activity_edit_jugador.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/layout/jugador_rv_item.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Marius/StudioProjects/TuMejorJugador.es/app/src/main/res/menu/menu_main.xml" value="0.12037037037037036" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable-v24/button_back.xml" value="0.2295" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable-v24/ic_add.xml" value="0.2295" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable-v24/ic_delete.xml" value="0.2295" />
@@ -28,7 +12,12 @@
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable-v24/progress_back.xml" value="0.2295" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2295" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/activity_add_jugador.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/activity_edit_jugador.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/jugador_rv_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/menu/menu_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2295" />
       </map>

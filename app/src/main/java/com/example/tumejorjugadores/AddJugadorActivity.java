@@ -1,10 +1,15 @@
 package com.example.tumejorjugadores;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,24 +28,21 @@ import java.util.Date;
 import java.util.Locale;
 
 public class AddJugadorActivity extends AppCompatActivity {
-
+    DatePickerDialog.OnDateSetListener setListener;
     //creando variables para su botón, edite texto, base de datos firebase, referencia de base de datos, barra de progreso.
     private Button addJugadorBtn;
-    private TextInputEditText jugadorNameEdt, jugadorDescEdt, jugadorPriceEdt,  jugadorImgEdt, jugadorLinkEdt;
+    private TextInputEditText jugadorNameEdt, jugadorDescEdt,  jugadorPriceEdt, jugadorImgEdt, jugadorLinkEdt;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private ProgressBar loadingPB;
     private String jugadorID;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //cojer la fecha de hoy
-        Date c = Calendar.getInstance().getTime();
-        System.out.println("Current time => " + c);
 
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
-        String formattedDate = df.format(c);
 
 
         setContentView(R.layout.activity_add_jugador);
@@ -56,10 +58,41 @@ public class AddJugadorActivity extends AppCompatActivity {
         //abajo creamos nuestra referencia a la base de datos.
         databaseReference = firebaseDatabase.getReference("Jugadores");
         //agregando click listener para nuestro botón de agregar jugador.
+
+        Calendar calendar =Calendar.getInstance();
+        final int year= calendar.get(Calendar.YEAR);
+        final int month= calendar.get(Calendar.MONTH);
+        final int day= calendar.get(Calendar.DAY_OF_MONTH);
+
+
+        jugadorPriceEdt.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                DatePickerDialog  datePickerDialog= new DatePickerDialog(
+                        AddJugadorActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        month = month +1;
+                        String date= day+"/"+month+"/"+year;
+                        jugadorPriceEdt.setText(date);
+                    }
+                },year,month,day);
+                datePickerDialog.show();
+
+            }
+
+
+
+
+        });
+
         addJugadorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadingPB.setVisibility(View.VISIBLE);
+
+
                 //obtener datos de nuestro texto de edición.
                 String jugadorName = jugadorNameEdt.getText().toString();
                 String jugadorDesc = jugadorDescEdt.getText().toString();
@@ -76,7 +109,7 @@ public class AddJugadorActivity extends AppCompatActivity {
                         //en la línea de abajo estamos configurando datos en nuestra base de datos de firebase.
                         databaseReference.child(jugadorID).setValue(jugadorRVModal);
                         //displaying a toast message.
-                        Toast.makeText(AddJugadorActivity.this, "Jugador Added..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddJugadorActivity.this, "Noticia Añadida..", Toast.LENGTH_SHORT).show();
                         //starting el main activity.
                         startActivity(new Intent(AddJugadorActivity.this, com.example.tumejorjugadores.MainActivity.class));
                     }
@@ -84,7 +117,7 @@ public class AddJugadorActivity extends AppCompatActivity {
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         //mostrando un mensaje de error en la línea de abajo.
-                        Toast.makeText(AddJugadorActivity.this, "Fail to add Jugador..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddJugadorActivity.this, "Error en añadir la noticia..", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

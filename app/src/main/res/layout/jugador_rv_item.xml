@@ -14,31 +14,35 @@
         android:background="@color/black_shade_1">
 
         <!--image view para nuestro jugador-->
+
+        <!--text view para jugador name-->
+
+        <!--text view para jugador price-->
+
         <ImageView
             android:id="@+id/idIVJugador"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop" />
 
-        <!--text view para jugador name-->
         <TextView
             android:id="@+id/idTVJUgadorName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="399dp"
+            android:layout_height="109dp"
             android:layout_below="@id/idIVJugador"
             android:layout_marginStart="3dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="3dp"
+            android:layout_marginTop="-114dp"
+            android:layout_marginEnd="-55dp"
+            android:layout_marginRight="-55dp"
             android:layout_marginBottom="3dp"
             android:layout_toStartOf="@id/idTVCousePrice"
             android:layout_toLeftOf="@id/idTVCousePrice"
             android:padding="4dp"
-            android:text="Jugador Name"
+            android:text="Incredible que ha pasado con..."
             android:textColor="@color/white"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
-        <!--text view para jugador price-->
         <TextView
             android:id="@+id/idTVCousePrice"
             android:layout_width="wrap_content"

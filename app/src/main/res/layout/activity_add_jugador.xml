@@ -25,7 +25,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:hint="Introduce el nombre del Jugador"
+                android:hint="Introduce el titulo de la noticia"
                 android:padding="5dp"
                 android:textColorHint="@color/white"
                 app:hintTextColor="@color/white">
@@ -52,7 +52,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:hint="Introduce el precio del jugador"
+                android:hint="La fecha de la noticia"
                 android:padding="5dp"
                 android:textColorHint="@color/white"
                 app:boxStrokeColor="@color/purple_200"
