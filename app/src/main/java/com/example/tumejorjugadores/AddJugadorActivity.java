@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -50,7 +51,7 @@ public class AddJugadorActivity extends AppCompatActivity {
         addJugadorBtn = findViewById(R.id.idBtnAddJugador);
         jugadorNameEdt = findViewById(R.id.idEdtJugadorName);
         jugadorDescEdt = findViewById(R.id.idEdtJugadorDescription);
-        jugadorFechaEdt = findViewById(R.id.idEdtJugadorFecha);
+        //  jugadorFechaEdt = findViewById(R.id.idEdtJugadorDescription);
         jugadorImgEdt = findViewById(R.id.idEdtJugadorImageLink);
         jugadorLinkEdt = findViewById(R.id.idEdtJugadorLink);
         loadingPB = findViewById(R.id.idPBLoading);
@@ -59,33 +60,7 @@ public class AddJugadorActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("Jugadores");
         //agregando click listener para nuestro botón de agregar jugador.
 
-        Calendar calendar =Calendar.getInstance();
-        final int year= calendar.get(Calendar.YEAR);
-        final int month= calendar.get(Calendar.MONTH);
-        final int day= calendar.get(Calendar.DAY_OF_MONTH);
 
-
-        jugadorFechaEdt.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-                DatePickerDialog  datePickerDialog= new DatePickerDialog(
-                        AddJugadorActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        month = month +1;
-                        String date= day+"/"+month+"/"+year;
-                        jugadorFechaEdt.setText(date);
-                    }
-                },year,month,day);
-                datePickerDialog.show();
-
-            }
-
-
-
-
-        });
 
         addJugadorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,8 +71,13 @@ public class AddJugadorActivity extends AppCompatActivity {
                 //obtener datos de nuestro texto de edición.
                 String jugadorName = jugadorNameEdt.getText().toString();
                 String jugadorDesc = jugadorDescEdt.getText().toString();
-                String jugadorFecha = jugadorFechaEdt.getText().toString();
+                String jugadorFecha = new SimpleDateFormat("yyyy/MM/dd  HH:mm", Locale.getDefault()).format(new Date());
+
                 String jugadorImg = jugadorImgEdt.getText().toString();
+                if (jugadorImg.length()<10){
+                    jugadorImg="https://imgresizer.eurosport.com/unsafe/1200x0/filters:format(jpeg):focal(1320x497:1322x495)/origin-imgresizer.eurosport.com/2021/04/20/3117926-63914248-2560-1440.jpg";
+
+                }
                 String jugadorLink = jugadorLinkEdt.getText().toString();
                 jugadorID = jugadorName;
                 //en la línea de abajo estamos pasando todos los datos a nuestra clase modal.
