@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         jugadorNameTV.setText(modal.getJugadorName());
         jugadorDescTV.setText(modal.getJugadorDescription());
         fechaTV.setText("Fecha:" + modal.getJugadorFecha());
-        Picasso.get().load(modal.getJugadorImg()).placeholder(R.mipmap.ic_launcher).into(jugadorIV);
+        Picasso.get().load(modal.getJugadorImg()).placeholder(R.mipmap.img).into(jugadorIV);
         Button viewBtn = layout.findViewById(R.id.idBtnVIewDetails);
         Button editBtn = layout.findViewById(R.id.idBtnEditJugador);
 
