@@ -16,12 +16,12 @@
         android:layout_marginEnd="3dp"
         android:layout_marginBottom="3dp"
         android:padding="4dp"
-        android:text="Jugador Nombre:"
+        android:text="Noticia Nombre:"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold" />
 
-    <!--image view for displaying jugador image-->
+    <!--image view para desplegar la imagen de la noticia-->
 
     <ImageView
         android:id="@+id/idIVJugador"
@@ -33,7 +33,7 @@
         android:padding="4dp"
         android:src="@drawable/ic_launcher_background" />
 
-    <!--text view for displaying jugadordescription-->
+    <!--text view para desplegar el texto de la notica-->
     <TextView
         android:id="@+id/idTVJugadorDesc"
         android:layout_width="297dp"
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
             android:layout_weight="1"
-            android:text="Edit Jugador"
+            android:text="Editar Noticia"
             android:textAllCaps="false" />
 
         <!--button for viewing jugador details-->

@@ -10,10 +10,10 @@
         android:theme="@style/Theme.TuMejorJugadores">
         <activity
             android:name=".EditJugadorActivity"
-            android:label="Edit Jugador" />
+            android:label="Edit Noticia" />
         <activity
             android:name=".AddJugadorActivity"
-            android:label="Add Jugador" />
+            android:label="Add Noticia" />
         <activity
             android:name=".RegisterActivity"
             android:label="Register" />

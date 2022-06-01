@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--edit text para adding a jugador name-->
+            <!--edit text para añadir un titulo a la noticia-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/idTILJugadorName"
                 style="@style/LoginTextInputLayoutStyle"
@@ -25,7 +25,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:hint="Introduce el Nombre del Jugador"
+                android:hint="Introduce el titulo de la Noticia"
                 android:padding="5dp"
                 android:textColorHint="@color/white"
                 app:hintTextColor="@color/white">
@@ -42,7 +42,7 @@
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!--edit text para adding a jugador fecha-->
+            <!--edit text para añadirt fecha de la notica-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/idTILJugadorFecha"
@@ -73,7 +73,7 @@
 
 
 
-            <!--edit text for adding a jugador image link-->
+            <!--edit text para añadir una  image pr elance-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/idTILJugadorImageLink"
@@ -100,7 +100,7 @@
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!--edit text for adding a jugador link-->
+            <!--edit text para añadir un elance de la noticia-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/idTILJugadorLink"
@@ -137,7 +137,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:hint="Introduce una descripcion sobre el jugador"
+                android:hint="Introduce el texto del articulo"
                 android:padding="5dp"
                 android:textColorHint="@color/white"
                 app:hintTextColor="@color/white">
