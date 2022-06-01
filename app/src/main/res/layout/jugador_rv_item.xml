@@ -39,7 +39,7 @@
             android:layout_toStartOf="@id/idTVCouseFecha"
             android:layout_toLeftOf="@id/idTVCouseFecha"
             android:background="#08100F0F"
-            android:backgroundTint="#32000000"
+            android:backgroundTint="#570CDBFF"
             android:backgroundTintMode="screen"
             android:bufferType="normal"
             android:contextClickable="false"
