@@ -7,28 +7,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.ViewHolder> {
+public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.ViewHolder>   {
     //creando variables para nuestra lista, contexto, interfaz y posición.
     private ArrayList<JugadorRVModal> jugadorRVModalArrayList;
     private Context context;
     private JugadorClickInterface jugadorClickInterface;
     int lastPos = -1;
 
+
     //creando los  constructores.
-    public JugadorRVAdapter(ArrayList<JugadorRVModal> jugadorRVModalArrayList, Context context, JugadorClickInterface jugadorClickInterface) {
+    public JugadorRVAdapter(ArrayList<JugadorRVModal> jugadorRVModalArrayList, Context context, JugadorClickInterface jugadorClickInterface)  {
         this.jugadorRVModalArrayList = jugadorRVModalArrayList;
         this.context = context;
         this.jugadorClickInterface = jugadorClickInterface;
+
     }
 
     @NonNull
@@ -36,6 +42,7 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // inflando un archivo de diseño en la línea de abajo.
         View view = LayoutInflater.from(context).inflate(R.layout.jugador_rv_item, parent, false);
+
         return new ViewHolder(view);
     }
 
@@ -70,6 +77,13 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
     public int getItemCount() {
         return jugadorRVModalArrayList.size();
     }
+
+
+
+
+
+
+    ///***********************
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //creando variable para nuestra vista de imagen y vista de texto en la línea de abajo.

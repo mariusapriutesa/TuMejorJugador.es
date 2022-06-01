@@ -1,5 +1,6 @@
 package com.example.tumejorjugadores;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements com.example.tumejorjugadores.JugadorRVAdapter.JugadorClickInterface {
 
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     DatabaseReference databaseReference;
     private RecyclerView jugadorRV;
     private FirebaseAuth mAuth;
+    private SearchView searchView;
     private ProgressBar loadingPB;
     private ArrayList<JugadorRVModal> jugadorRVModalArrayList;
     private com.example.tumejorjugadores.JugadorRVAdapter jugadorRVAdapter;
@@ -51,9 +55,24 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         setContentView(R.layout.activity_main);
         //initializing all our variables.
         jugadorRV = findViewById(R.id.idRVJugadores);
+       searchView =findViewById(R.id.search_view);
+       searchView.clearFocus();
+       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+           @Override
+           public boolean onQueryTextSubmit(String query) {
+               return false;
+           }
+
+           @Override
+           public boolean onQueryTextChange(String newText) {
+               filterlist(newText);
+               return false;
+           }
+       });
         homeRL = findViewById(R.id.idRLBSheet);
         loadingPB = findViewById(R.id.idPBLoading);
-        addJugadorFAB = findViewById(R.id.idFABAddJugador);
+        addJugadorFAB = findViewById(R.id.idFABAddJugador);//validacion**
+       // if (mAuth.equals("sada")){}
         firebaseDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
         jugadorRVModalArrayList = new ArrayList<>();
@@ -63,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         addJugadorFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //validar**
                 //abrir una nueva actividad para agregar un jugador.
                 Intent i = new Intent(MainActivity.this, AddJugadorActivity.class);
                 startActivity(i);
@@ -77,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         // en la línea de abajo llamando a un método para obtener jugadores de la base de datos.
         getJugadores();
     }
+
 
     private void getJugadores() {
         // en la línea de abajo limpiando nuestra lista.
@@ -205,6 +226,34 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         });
 
     }
+//search
+    private void filterlist(String strSearch) {
+        //RECIBIMOS POR PARAMETRO EL TEXTO DEL BUSCADOR
+        if(strSearch.length() == 0) {
+            //SI LA LONGITUD ES 0, LIMPIAMOS LA LISTA Y LA VOLVEMOS A LLENAR CON TODOS LOS USUARIOS
 
 
+
+        }
+
+    }
+        /*public void filter(String strSearch) {
+           //RECIBIMOS POR PARAMETRO EL TEXTO DEL BUSCADOR
+            if(strSearch.length() == 0) {
+                //SI LA LONGITUD ES 0, LIMPIAMOS LA LISTA Y LA VOLVEMOS A LLENAR CON TODOS LOS USUARIOS
+                jugadorRVModalArrayList.clear();
+                usuarioList.addAll(listaOriginal);
+            }
+            else {
+                //SI RECIBE TEXTO, LIMPIAMOS LA LISTA, Y VAMOS AÑADIENDO LOS USUARIOS QUE CONTENGAN ESE TEXTO
+                   usuarioList.clear();
+                   for(Usuario u: listaOriginal) {
+                       if(u.getUsuario().toLowerCase().contains(strSearch)) {
+                           usuarioList.add(u);
+                       }
+                   }
+            }        notifyDataSetChanged();
+            //NOTIFICAMOS LOS CAMBIOS PARA QUE SE HAGAN EFECTIVOS
+            }
+            }*/
 }

@@ -8,22 +8,48 @@
     android:background="@color/black_shade_1"
     tools:context=".MainActivity">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="14dp"
+        app:cardElevation="8dp">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:defaultQueryHint="Search..."
+            app:iconifiedByDefault="false">
+
+        </androidx.appcompat.widget.SearchView>
+    </androidx.cardview.widget.CardView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVJugadores"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/jugador_rv_item" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/jugador_rv_item"
 
+
+        />
 
     <ProgressBar
         android:id="@+id/idPBLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="185dp"
+        android:layout_marginTop="223dp"
+        android:layout_marginEnd="178dp"
+        android:layout_marginBottom="390dp"
         android:indeterminate="true"
         android:indeterminateDrawable="@drawable/progress_back" />
-
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/idFABAddJugador"
@@ -44,6 +70,8 @@
         app:tint="@color/white"
         tools:ignore="SpeakableTextPresentCheck"
         android:contentDescription="TODO" />
+
+
 
 
 </RelativeLayout>

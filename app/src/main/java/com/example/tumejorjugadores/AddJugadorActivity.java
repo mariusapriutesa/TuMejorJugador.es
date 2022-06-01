@@ -30,7 +30,7 @@ import java.util.Locale;
 
 public class AddJugadorActivity extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener setListener;
-    //creando variables para su botón, edite texto, base de datos firebase, referencia de base de datos, barra de progreso.
+    //creando variables para su botón, edite texto, base de datos firebase, referencia de base de datos, barra de progreso( la animacion).
     private Button addJugadorBtn;
     private TextInputEditText jugadorNameEdt, jugadorDescEdt,  jugadorFechaEdt, jugadorImgEdt, jugadorLinkEdt;
     FirebaseDatabase firebaseDatabase;
@@ -58,9 +58,10 @@ public class AddJugadorActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         //abajo creamos nuestra referencia a la base de datos.
         databaseReference = firebaseDatabase.getReference("Jugadores");
-        //agregando click listener para nuestro botón de agregar jugador.
 
 
+
+        //agregando onclickListener para nuestro botón de agregar noticias.
 
         addJugadorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
