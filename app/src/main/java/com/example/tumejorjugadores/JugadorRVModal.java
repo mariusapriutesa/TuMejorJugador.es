@@ -7,7 +7,7 @@ public class JugadorRVModal implements Parcelable {
     //creating variables for our different fields.
     private String jugadorName;
     private String jugadorDescription;
-    private String jugadorPrice;
+    private String jugadorFecha;
     private String jugadorImg;
     private String jugadorLink;
     private String jugadorId;
@@ -31,7 +31,7 @@ public class JugadorRVModal implements Parcelable {
         jugadorName = in.readString();
         jugadorId = in.readString();
         jugadorDescription = in.readString();
-        jugadorPrice = in.readString();
+        jugadorFecha = in.readString();
         jugadorImg = in.readString();
         jugadorLink = in.readString();
     }
@@ -65,12 +65,12 @@ public class JugadorRVModal implements Parcelable {
         this.jugadorDescription = jugadorDescription;
     }
 
-    public String getJugadorPrice() {
-        return jugadorPrice;
+    public String getJugadorFecha() {
+        return jugadorFecha;
     }
 
-    public void setJugadorPrice(String jugadorPrice) {
-        this.jugadorPrice = jugadorPrice;
+    public void setJugadorFecha(String jugadorFecha) {
+        this.jugadorFecha = jugadorFecha;
     }
 
 
@@ -92,11 +92,11 @@ public class JugadorRVModal implements Parcelable {
     }
 
 
-    public JugadorRVModal(String jugadorId, String jugadorName, String jugadorDescription, String jugadorPrice,  String jugadorImg, String jugadorLink) {
+    public JugadorRVModal(String jugadorId, String jugadorName, String jugadorDescription, String jugadorFecha,  String jugadorImg, String jugadorLink) {
         this.jugadorName = jugadorName;
         this.jugadorId = jugadorId;
         this.jugadorDescription = jugadorDescription;
-        this.jugadorPrice = jugadorPrice;
+        this.jugadorFecha = jugadorFecha;
         this.jugadorImg = jugadorImg;
         this.jugadorLink = jugadorLink;
     }
@@ -111,7 +111,7 @@ public class JugadorRVModal implements Parcelable {
         dest.writeString(jugadorName);
         dest.writeString(jugadorId);
         dest.writeString(jugadorDescription);
-        dest.writeString(jugadorPrice);
+        dest.writeString(jugadorFecha);
         dest.writeString(jugadorImg);
         dest.writeString(jugadorLink);
     }

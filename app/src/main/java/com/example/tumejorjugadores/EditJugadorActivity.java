@@ -23,7 +23,7 @@ import java.util.Map;
 public class EditJugadorActivity extends AppCompatActivity {
 
     //creando variables para nuestro texto de edición, base de datos firebase, referencia de base de datos, jugador rv modal, barra de progreso.
-    private TextInputEditText jugadorNameEdt, jugadorDescEdt, jugadorPriceEdt,  jugadorImgEdt, jugadorLinkEdt;
+    private TextInputEditText jugadorNameEdt, jugadorDescEdt, jugadorFechaEdt,  jugadorImgEdt, jugadorLinkEdt;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     JugadorRVModal jugadorRVModal;
@@ -40,7 +40,7 @@ public class EditJugadorActivity extends AppCompatActivity {
         Button addJugadorBtn = findViewById(R.id.idBtnAddJugador);
         jugadorNameEdt = findViewById(R.id.idEdtJugadorName);
         jugadorDescEdt = findViewById(R.id.idEdtJugadorDescription);
-        jugadorPriceEdt = findViewById(R.id.idEdtJugadorPrice);
+        jugadorFechaEdt = findViewById(R.id.idEdtJugadorFecha);
         jugadorImgEdt = findViewById(R.id.idEdtJugadorImageLink);
         jugadorLinkEdt = findViewById(R.id.idEdtJugadorLink);
         loadingPB = findViewById(R.id.idPBLoading);
@@ -52,7 +52,7 @@ public class EditJugadorActivity extends AppCompatActivity {
         if (jugadorRVModal != null) {
             //en la línea de abajo estamos configurando datos para nuestro texto de edición de nuestra clase modal.
             jugadorNameEdt.setText(jugadorRVModal.getJugadorName());
-            jugadorPriceEdt.setText(jugadorRVModal.getJugadorPrice());
+            jugadorFechaEdt.setText(jugadorRVModal.getJugadorFecha());
 
             jugadorImgEdt.setText(jugadorRVModal.getJugadorImg());
             jugadorLinkEdt.setText(jugadorRVModal.getJugadorLink());
@@ -71,14 +71,14 @@ public class EditJugadorActivity extends AppCompatActivity {
                 //en la línea de abajo estamos obteniendo datos de nuestro texto de edición.
                 String jugadorName = jugadorNameEdt.getText().toString();
                 String jugadorDesc = jugadorDescEdt.getText().toString();
-                String jugadorPrice = jugadorPriceEdt.getText().toString();
+                String jugadorFecha = jugadorFechaEdt.getText().toString();
                 String jugadorImg = jugadorImgEdt.getText().toString();
                 String jugadorLink = jugadorLinkEdt.getText().toString();
                 //en la línea de abajo estamos creando un mapa para pasar datos usando un par de clave y valor.
                 Map<String, Object> map = new HashMap<>();
                 map.put("jugadorName", jugadorName);
                 map.put("jugadorDescription", jugadorDesc);
-                map.put("jugadorPrice", jugadorPrice);
+                map.put("jugadorFecha", jugadorFecha);
                 map.put("jugadorImg", jugadorImg);
                 map.put("jugadorLink", jugadorLink);
                 map.put("jugadorId", jugadorID);

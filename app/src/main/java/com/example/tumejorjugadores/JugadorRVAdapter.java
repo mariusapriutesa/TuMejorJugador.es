@@ -45,7 +45,7 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
         //configurando datos para nuestro elemento de RecyclerView en la línea de abajo.
         JugadorRVModal jugadorRVModal = jugadorRVModalArrayList.get(position);
         holder.jugadorTV.setText(jugadorRVModal.getJugadorName());
-        holder.jugadorPriceTV.setText("" + jugadorRVModal.getJugadorPrice());
+        holder.jugadorFechaTV.setText("" + jugadorRVModal.getJugadorFecha());
         Picasso.get().load(jugadorRVModal.getJugadorImg()).into(holder.jugadorIV);
         // agregando animación al los elementos de recycleView en la línea de abajo.
         setAnimation(holder.itemView, position);
@@ -74,14 +74,14 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //creando variable para nuestra vista de imagen y vista de texto en la línea de abajo.
         private ImageView jugadorIV;
-        private TextView jugadorTV, jugadorPriceTV;
+        private TextView jugadorTV, jugadorFechaTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //initializing all our variables on below line.
             jugadorIV = itemView.findViewById(R.id.idIVJugador);
             jugadorTV = itemView.findViewById(R.id.idTVJUgadorName);
-            jugadorPriceTV = itemView.findViewById(R.id.idTVCousePrice);
+            jugadorFechaTV = itemView.findViewById(R.id.idTVCouseFecha);
         }
     }
 

@@ -18,7 +18,7 @@
 
         <!--text view para jugador name-->
 
-        <!--text view para jugador price-->
+        <!--text view para fecha de la noticia-->
 
         <ImageView
             android:id="@+id/idIVJugador"
@@ -36,8 +36,8 @@
             android:layout_marginEnd="-55dp"
             android:layout_marginRight="-55dp"
             android:layout_marginBottom="3dp"
-            android:layout_toStartOf="@id/idTVCousePrice"
-            android:layout_toLeftOf="@id/idTVCousePrice"
+            android:layout_toStartOf="@id/idTVCouseFecha"
+            android:layout_toLeftOf="@id/idTVCouseFecha"
             android:backgroundTintMode="screen"
             android:bufferType="normal"
             android:contextClickable="false"
@@ -60,7 +60,7 @@
             tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/idTVCousePrice"
+            android:id="@+id/idTVCouseFecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/idIVJugador"
@@ -69,7 +69,7 @@
             android:layout_margin="3dp"
             android:gravity="center"
             android:padding="4dp"
-            android:text="Precio"
+            android:text="Fecha"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />

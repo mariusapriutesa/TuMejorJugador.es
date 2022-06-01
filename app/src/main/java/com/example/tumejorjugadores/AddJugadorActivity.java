@@ -31,7 +31,7 @@ public class AddJugadorActivity extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener setListener;
     //creando variables para su botón, edite texto, base de datos firebase, referencia de base de datos, barra de progreso.
     private Button addJugadorBtn;
-    private TextInputEditText jugadorNameEdt, jugadorDescEdt,  jugadorPriceEdt, jugadorImgEdt, jugadorLinkEdt;
+    private TextInputEditText jugadorNameEdt, jugadorDescEdt,  jugadorFechaEdt, jugadorImgEdt, jugadorLinkEdt;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private ProgressBar loadingPB;
@@ -50,7 +50,7 @@ public class AddJugadorActivity extends AppCompatActivity {
         addJugadorBtn = findViewById(R.id.idBtnAddJugador);
         jugadorNameEdt = findViewById(R.id.idEdtJugadorName);
         jugadorDescEdt = findViewById(R.id.idEdtJugadorDescription);
-        jugadorPriceEdt = findViewById(R.id.idEdtJugadorPrice);
+        jugadorFechaEdt = findViewById(R.id.idEdtJugadorFecha);
         jugadorImgEdt = findViewById(R.id.idEdtJugadorImageLink);
         jugadorLinkEdt = findViewById(R.id.idEdtJugadorLink);
         loadingPB = findViewById(R.id.idPBLoading);
@@ -65,7 +65,7 @@ public class AddJugadorActivity extends AppCompatActivity {
         final int day= calendar.get(Calendar.DAY_OF_MONTH);
 
 
-        jugadorPriceEdt.setOnClickListener(new View.OnClickListener(){
+        jugadorFechaEdt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
@@ -75,7 +75,7 @@ public class AddJugadorActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month = month +1;
                         String date= day+"/"+month+"/"+year;
-                        jugadorPriceEdt.setText(date);
+                        jugadorFechaEdt.setText(date);
                     }
                 },year,month,day);
                 datePickerDialog.show();
@@ -96,12 +96,12 @@ public class AddJugadorActivity extends AppCompatActivity {
                 //obtener datos de nuestro texto de edición.
                 String jugadorName = jugadorNameEdt.getText().toString();
                 String jugadorDesc = jugadorDescEdt.getText().toString();
-                String jugadorPrice = jugadorPriceEdt.getText().toString();
+                String jugadorFecha = jugadorFechaEdt.getText().toString();
                 String jugadorImg = jugadorImgEdt.getText().toString();
                 String jugadorLink = jugadorLinkEdt.getText().toString();
                 jugadorID = jugadorName;
                 //en la línea de abajo estamos pasando todos los datos a nuestra clase modal.
-                JugadorRVModal jugadorRVModal = new JugadorRVModal(jugadorID, jugadorName, jugadorDesc, jugadorPrice,  jugadorImg, jugadorLink);
+                JugadorRVModal jugadorRVModal = new JugadorRVModal(jugadorID, jugadorName, jugadorDesc, jugadorFecha,  jugadorImg, jugadorLink);
                 //en la línea de abajo estamos llamando a un evento de valor agregado para pasar datos a la base de datos de firebase.
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override

@@ -172,12 +172,12 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         TextView jugadorNameTV = layout.findViewById(R.id.idTVJugadorName);
         TextView jugadorDescTV = layout.findViewById(R.id.idTVJugadorDesc);
 
-        TextView priceTV = layout.findViewById(R.id.idTVJugadorPrice);
+        TextView fechaTV = layout.findViewById(R.id.idTVJugadorFecha);
         ImageView jugadorIV = layout.findViewById(R.id.idIVJugador);
         // en la línea de abajo estamos configurando datos para diferentes vistas en la línea de abajo.
         jugadorNameTV.setText(modal.getJugadorName());
         jugadorDescTV.setText(modal.getJugadorDescription());
-        priceTV.setText("Precio:" + modal.getJugadorPrice()+"€");
+        fechaTV.setText("Fecha:" + modal.getJugadorFecha());
         Picasso.get().load(modal.getJugadorImg()).into(jugadorIV);
         Button viewBtn = layout.findViewById(R.id.idBtnVIewDetails);
         Button editBtn = layout.findViewById(R.id.idBtnEditJugador);

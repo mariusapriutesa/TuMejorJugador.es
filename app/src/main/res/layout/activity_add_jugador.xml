@@ -43,9 +43,9 @@
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!--edit text para jugadore price-->
+            <!--edit text para jugadore Fecha-->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/idTILJugadorPrice"
+                android:id="@+id/idTILJugadorFecha"
                 style="@style/LoginTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                 app:hintTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/idEdtJugadorPrice"
+                    android:id="@+id/idEdtJugadorFecha"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:ems="10"
