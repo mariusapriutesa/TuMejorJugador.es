@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class EditJugadorActivity extends AppCompatActivity {
 
-    //creando variables para nuestro texto de edición, base de datos firebase, referencia de base de datos, jugador rv modal, barra de progreso.
+    //iniciando variables para nuestro texto de edición, base de datos firebase, referencia de base de datos, jugadorRvModal y la bara de progreso.
     private TextInputEditText jugadorNameEdt;
     private TextInputEditText jugadorDescEdt;
     private String jugadorFechaEdt;

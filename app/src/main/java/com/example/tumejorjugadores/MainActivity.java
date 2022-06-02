@@ -41,13 +41,17 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     private FloatingActionButton addJugadorFAB;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    private RecyclerView jugadorRV;
+
+    private JugadorRVModal jugadorRVModal;
     private FirebaseAuth mAuth;
-    private SearchView searchView;
+    private RecyclerView jugadorRV;//eee
+    private SearchView searchView;///eee
     private ProgressBar loadingPB;
     private ArrayList<JugadorRVModal> jugadorRVModalArrayList;
+    private ArrayList<JugadorRVModal> jugadorRVModalArrayListALL;
     private com.example.tumejorjugadores.JugadorRVAdapter jugadorRVAdapter;
     private RelativeLayout homeRL;
+    private Object JugadorRVModal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,27 +59,28 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         setContentView(R.layout.activity_main);
         //initializing all our variables.
         jugadorRV = findViewById(R.id.idRVJugadores);
-       searchView =findViewById(R.id.search_view);
-       searchView.clearFocus();
-       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-           @Override
-           public boolean onQueryTextSubmit(String query) {
-               return false;
-           }
-
-           @Override
-           public boolean onQueryTextChange(String newText) {
-               filterlist(newText);
-               return false;
-           }
-       });
         homeRL = findViewById(R.id.idRLBSheet);
         loadingPB = findViewById(R.id.idPBLoading);
-        addJugadorFAB = findViewById(R.id.idFABAddJugador);//validacion**
-       // if (mAuth.equals("sada")){}
+        addJugadorFAB = findViewById(R.id.idFABAddJugador);
+        searchView= findViewById(R.id.search_view);
+        searchView.clearFocus();
         firebaseDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        jugadorRVModalArrayList = new ArrayList<>();
+        jugadorRVModalArrayList = new ArrayList<JugadorRVModal>();
+        jugadorRVModalArrayListALL = new ArrayList<JugadorRVModal>();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String strSearch) {
+                filterlist(strSearch);
+                return true;
+            }
+        });
+
         // en la línea de abajo estamos obteniendo la referencia de la base de datos.
         databaseReference = firebaseDatabase.getReference("Jugadores");
         // En la línea de abajo agregando un click listener para nuestro floating action button.
@@ -227,33 +232,28 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
 
     }
 //search
-    private void filterlist(String strSearch) {
-        //RECIBIMOS POR PARAMETRO EL TEXTO DEL BUSCADOR
-        if(strSearch.length() == 0) {
-            //SI LA LONGITUD ES 0, LIMPIAMOS LA LISTA Y LA VOLVEMOS A LLENAR CON TODOS LOS USUARIOS
 
+    public void filterlist(String strSearch) {
+        //RECIBIMOS POR PARAMETRO EL TEXTO DEL BUSCADOR
+        ArrayList<com.example.tumejorjugadores.JugadorRVModal> filteredList = new ArrayList<>();
+        for (JugadorRVModal j: jugadorRVModalArrayList) {
+            if (j.getJugadorName().toLowerCase().contains(strSearch.toLowerCase())) {
+                filteredList.add(j);
+            }
+        }
+
+        if (filteredList.isEmpty()) {
+               Toast.makeText(this,"No date fond", Toast.LENGTH_SHORT).show();
+            } else { //SI RECIBE TEXTO, LIMPIAMOS LA LISTA, Y VAMOS AÑADIENDO LOS USUARIOS QUE CONTENGAN ESE TEXTO
+            jugadorRVAdapter.setFilteredList(filteredList);
+
+            }
 
 
         }
+    //ESTE SE USA PARA BUSCAR CADA VEZ QUE SE ESCRIBE O BORRA UNA LETRA, CUNADO SE MODIFICA EL TEXTO
+
 
     }
-        /*public void filter(String strSearch) {
-           //RECIBIMOS POR PARAMETRO EL TEXTO DEL BUSCADOR
-            if(strSearch.length() == 0) {
-                //SI LA LONGITUD ES 0, LIMPIAMOS LA LISTA Y LA VOLVEMOS A LLENAR CON TODOS LOS USUARIOS
-                jugadorRVModalArrayList.clear();
-                usuarioList.addAll(listaOriginal);
-            }
-            else {
-                //SI RECIBE TEXTO, LIMPIAMOS LA LISTA, Y VAMOS AÑADIENDO LOS USUARIOS QUE CONTENGAN ESE TEXTO
-                   usuarioList.clear();
-                   for(Usuario u: listaOriginal) {
-                       if(u.getUsuario().toLowerCase().contains(strSearch)) {
-                           usuarioList.add(u);
-                       }
-                   }
-            }        notifyDataSetChanged();
-            //NOTIFICAMOS LOS CAMBIOS PARA QUE SE HAGAN EFECTIVOS
-            }
-            }*/
-}
+
+

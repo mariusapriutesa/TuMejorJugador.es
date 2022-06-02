@@ -21,18 +21,29 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.ViewHolder>   {
+public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.ViewHolder> {
+    private static ArrayList<JugadorRVModal> jugadorRVModalArrayList;
     //creando variables para nuestra lista, contexto, interfaz y posición.
-    private ArrayList<JugadorRVModal> jugadorRVModalArrayList;
+
+    ArrayList<JugadorRVModal> jugadorRVModalArrayListALL;
     private Context context;
     private JugadorClickInterface jugadorClickInterface;
+    MainActivity adapter;
     int lastPos = -1;
+    SearchView svSearch; //CREAMOS  EL OBJETO SEARCHVIEW PARA LAS BUSQUEDAS
 
+
+    public void setFilteredList(ArrayList<JugadorRVModal> filteredList){
+    jugadorRVModalArrayList=filteredList;
+   notifyDataSetChanged();
+    }
 
     //creando los  constructores.
     public JugadorRVAdapter(ArrayList<JugadorRVModal> jugadorRVModalArrayList, Context context, JugadorClickInterface jugadorClickInterface)  {
         this.jugadorRVModalArrayList = jugadorRVModalArrayList;
+
         this.context = context;
+
         this.jugadorClickInterface = jugadorClickInterface;
 
     }
@@ -82,7 +93,6 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
 
 
 
-
     ///***********************
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -103,4 +113,5 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
     public interface JugadorClickInterface {
         void onJugadorClick(int position);
     }
+
 }

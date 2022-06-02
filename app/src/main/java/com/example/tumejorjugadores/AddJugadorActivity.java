@@ -69,19 +69,16 @@ public class AddJugadorActivity extends AppCompatActivity {
                 loadingPB.setVisibility(View.VISIBLE);
 
 
-                //obtener datos de nuestro texto de edición.
+                //obtener datos de nuestro edit text.
                 String jugadorName = jugadorNameEdt.getText().toString();
                 String jugadorDesc = jugadorDescEdt.getText().toString();
                 String jugadorFecha = new SimpleDateFormat("yyyy/MM/dd  HH:mm", Locale.getDefault()).format(new Date());
 
                 String jugadorImg = jugadorImgEdt.getText().toString();
-                if (jugadorImg.length()<10){
-                    jugadorImg="https://imgresizer.eurosport.com/unsafe/1200x0/filters:format(jpeg):focal(1320x497:1322x495)/origin-imgresizer.eurosport.com/2021/04/20/3117926-63914248-2560-1440.jpg";
 
-                }
                 String jugadorLink = jugadorLinkEdt.getText().toString();
                 jugadorID = jugadorName;
-                //en la línea de abajo estamos pasando todos los datos a nuestra clase modal.
+                //en la línea de abajo estamos pasando todos los datos a nuestra clase jugadorRVModal.
                 JugadorRVModal jugadorRVModal = new JugadorRVModal(jugadorID, jugadorName, jugadorDesc, jugadorFecha,  jugadorImg, jugadorLink);
                 //en la línea de abajo estamos llamando a un evento de valor agregado para pasar datos a la base de datos de firebase.
                 databaseReference.addValueEventListener(new ValueEventListener() {
