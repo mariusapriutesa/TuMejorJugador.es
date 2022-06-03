@@ -56,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //ocultar nuestra barra de progreso.
                 loadingPB.setVisibility(View.VISIBLE);
-                // obteniendo datos  fro =m  su edit text..
+                // obteniendo datos  de  su edit text..
                 String userName = userNameEdt.getText().toString();
                 String pwd = passwordEdt.getText().toString();
                 String cnfPwd = confirmPwdEdt.getText().toString();
@@ -75,14 +75,14 @@ public class RegisterActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 // en el método de éxito estamos ocultando nuestra barra de progreso y abriendo una actividad de inicio de sesión.
                                 loadingPB.setVisibility(View.GONE);
-                                Toast.makeText(RegisterActivity.this, "User Registered..", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "Usuario Registrado..", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(RegisterActivity.this, com.example.tumejorjugadores.LoginActivity.class);
                                 startActivity(i);
                                 finish();
                             } else {
                                 //en otra condición, estamos mostrando un toast mesaje de falla.
                                 loadingPB.setVisibility(View.GONE);
-                                Toast.makeText(RegisterActivity.this, "Fail to register user..", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "No se ha podido registrar el usuario..", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

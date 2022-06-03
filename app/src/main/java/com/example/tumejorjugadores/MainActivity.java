@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -48,11 +49,10 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     private SearchView searchView;///eee
     private ProgressBar loadingPB;
     private ArrayList<JugadorRVModal> jugadorRVModalArrayList;
-    private ArrayList<JugadorRVModal> jugadorRVModalArrayListALL;
     private com.example.tumejorjugadores.JugadorRVAdapter jugadorRVAdapter;
     private RelativeLayout homeRL;
     private Object JugadorRVModal;
-
+    private CheckBox c1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,11 +63,11 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         loadingPB = findViewById(R.id.idPBLoading);
         addJugadorFAB = findViewById(R.id.idFABAddJugador);
         searchView= findViewById(R.id.search_view);
+        c1= findViewById(R.id.favoritos);
         searchView.clearFocus();
         firebaseDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
         jugadorRVModalArrayList = new ArrayList<JugadorRVModal>();
-        jugadorRVModalArrayListALL = new ArrayList<JugadorRVModal>();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -167,6 +167,13 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 // en la línea de abajo estamos abriendo nuestra actividad de inicio de sesión.
                 Intent i = new Intent(MainActivity.this, com.example.tumejorjugadores.LoginActivity.class);
                 startActivity(i);
+                this.finish();
+                return true;
+            case R.id.favoritos:
+                Toast.makeText(getApplicationContext(), "Noticias guardadas", Toast.LENGTH_LONG).show();
+                // en la línea de abajo estamos abriendo nuestra lista de noticias favoritas.
+               // Intent f = new Intent(MainActivity.this, com.example.tumejorjugadores.ActivityFavoritos.class);
+                //startActivity(f);
                 this.finish();
                 return true;
             default:

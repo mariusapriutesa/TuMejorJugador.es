@@ -25,7 +25,6 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
     private static ArrayList<JugadorRVModal> jugadorRVModalArrayList;
     //creando variables para nuestra lista, contexto, interfaz y posición.
 
-    ArrayList<JugadorRVModal> jugadorRVModalArrayListALL;
     private Context context;
     private JugadorClickInterface jugadorClickInterface;
     MainActivity adapter;

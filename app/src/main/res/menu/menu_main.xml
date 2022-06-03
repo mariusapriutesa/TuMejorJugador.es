@@ -7,6 +7,6 @@
         android:title="Log Out" />
     <item
         android:id="@+id/favoritos"
-        android:icon="@drawable/ic_logout"
+        android:icon="@android:drawable/star_big_off"
         android:title="Favoritos" />
 </menu>

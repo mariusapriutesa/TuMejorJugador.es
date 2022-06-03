@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/idRLBSheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -7,10 +9,13 @@
     android:padding="4dp">
 
     <!--text view para el titulo de noticia -->
+
+    <!--image view para desplegar la imagen de la noticia-->
+
     <TextView
         android:id="@+id/idTVJugadorName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="322dp"
+        android:layout_height="81dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="3dp"
@@ -21,23 +26,24 @@
         android:textSize="15sp"
         android:textStyle="bold" />
 
-    <!--image view para desplegar la imagen de la noticia-->
-
     <ImageView
         android:id="@+id/idIVJugador"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="159dp"
+        android:layout_height="137dp"
         android:layout_below="@id/idTVJugadorName"
         android:layout_centerVertical="true"
-        android:layout_margin="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         android:padding="4dp"
         android:src="@drawable/ic_launcher_background" />
 
     <!--text view para desplegar el texto de la notica-->
     <TextView
         android:id="@+id/idTVJugadorDesc"
-        android:layout_width="297dp"
-        android:layout_height="wrap_content"
+        android:layout_width="225dp"
+        android:layout_height="73dp"
         android:layout_below="@id/idTVJugadorName"
         android:layout_marginStart="-2dp"
         android:layout_marginLeft="-2dp"
@@ -49,8 +55,6 @@
         android:padding="3dp"
         android:text="Description"
         android:textColor="@color/white" />
-
-
 
 
     <!--text view for displaying jugador Fecha-->
@@ -98,6 +102,22 @@
             android:textAllCaps="false" />
 
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="407dp"
+        android:layout_height="283dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="330dp"
+            android:layout_weight="1"
+            app:useMaterialThemeColors="false"
+            android:button="@drawable/selector_favoritos"
+            android:text="CheckBox" />
     </LinearLayout>
 
 
