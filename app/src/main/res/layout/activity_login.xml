@@ -16,13 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="129dp"
             android:background="@color/black_shade_1"
-            app:cardBackgroundColor="@color/black_shade_1">
+            app:cardBackgroundColor="#0E2433">
 
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="match_parent"
-                android:layout_height="144dp"
-                android:src="@drawable/img" />
+                android:layout_height="match_parent"
+                android:src="@drawable/img2" />
         </androidx.cardview.widget.CardView>
     </FrameLayout>
 
