@@ -228,6 +228,8 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 startActivity(i);
             }
         });
+
+        editBtn.setVisibility(View.GONE);
         //adding click listener para nuestro botón de vista en la línea de abajo.
         viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override

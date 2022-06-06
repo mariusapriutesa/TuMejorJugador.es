@@ -32,7 +32,7 @@ public class AddJugadorActivity extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener setListener;
     //creando variables para su botón, edite texto, base de datos firebase, referencia de base de datos, barra de progreso( la animacion).
     private Button addJugadorBtn;
-    private TextInputEditText jugadorNameEdt, jugadorDescEdt,  jugadorFechaEdt, jugadorImgEdt, jugadorLinkEdt;
+    private TextInputEditText jugadorNameEdt, jugadorDescEdt, jugadorImgEdt, jugadorLinkEdt;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private ProgressBar loadingPB;
@@ -57,12 +57,8 @@ public class AddJugadorActivity extends AppCompatActivity {
         loadingPB = findViewById(R.id.idPBLoading);
         firebaseDatabase = FirebaseDatabase.getInstance();
         //abajo creamos nuestra referencia a la base de datos.
-        databaseReference = firebaseDatabase.getReference("Jugadores");
-
-
-
+        databaseReference = firebaseDatabase.getReference("Jugadores2   ");
         //agregando onclickListener para nuestro botón de agregar noticias.
-
         addJugadorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +74,7 @@ public class AddJugadorActivity extends AppCompatActivity {
 
                 String jugadorLink = jugadorLinkEdt.getText().toString();
                 jugadorID = jugadorName;
+
                 //en la línea de abajo estamos pasando todos los datos a nuestra clase jugadorRVModal.
                 JugadorRVModal jugadorRVModal = new JugadorRVModal(jugadorID, jugadorName, jugadorDesc, jugadorFecha,  jugadorImg, jugadorLink);
                 //en la línea de abajo estamos llamando a un evento de valor agregado para pasar datos a la base de datos de firebase.

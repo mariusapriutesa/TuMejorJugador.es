@@ -3,12 +3,13 @@ package com.example.tumejorjugadores;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class UsuarioRVModal {
-   /* //creating variables for our different fields.
+public class UsuarioRVModal implements Parcelable {
+   //creating variables for our different fields.
     private String userNameEdt;
     private String passwordEdt;
     private String rols;
     private String usuarioId;
+    private String usuarioImg;
 
 
 
@@ -17,7 +18,7 @@ public class UsuarioRVModal {
     }
 
     public void setUsuarioId(String usuarioId) {
-        this.usuarioId = this.usuarioId;
+        this.usuarioId = usuarioId;
     }
 
 
@@ -31,9 +32,10 @@ public class UsuarioRVModal {
         usuarioId = in.readString();
         passwordEdt = in.readString();
         rols = in.readString();
+        usuarioImg = in.readString();
     }
 
-    public static final Parcelable.Creator<UsuarioRVModal> CREATOR = new Parcelable.Creator<UsuarioRVModal>() {
+    public static final Creator<UsuarioRVModal> CREATOR = new Creator<UsuarioRVModal>() {
         @Override
         public UsuarioRVModal createFromParcel(Parcel in) {
             return new UsuarioRVModal(in);
@@ -46,7 +48,7 @@ public class UsuarioRVModal {
     };
 
     //creating getter and setter methods.
-    public String getUserName() {
+    public String getUserNameEdt() {
         return userNameEdt;
     }
 
@@ -54,7 +56,7 @@ public class UsuarioRVModal {
         this.userNameEdt = userNameEdt;
     }
 
-    public String getJugadorDescription() {
+    public String getPasswordEdt() {
         return passwordEdt;
     }
 
@@ -62,44 +64,46 @@ public class UsuarioRVModal {
         this.passwordEdt = passwordEdt;
     }
 
-
-
-
-
-    public String getUserRols() {
+    public String getRols() {
         return rols;
     }
 
-    public void setUserRols(String rols) {
+    public void setRols(String rols) {
         this.rols = rols;
     }
 
 
 
+    public String getUsuarioImg() {
+        return usuarioImg;
+    }
 
-    public UsuarioRVModal(String userId, String userNameEdt, String passwordEdt,  String rols) {
+    public void setUsuarioImg(String usuarioImg) {
+        this.usuarioImg = usuarioImg;
+    }
+
+
+
+
+    public UsuarioRVModal(String usuarioId, String userNameEdt, String passwordEdt, String rols,  String jugadorImg) {
         this.userNameEdt = userNameEdt;
-        this.usuarioId = userId;
+        this.usuarioId = usuarioId;
         this.passwordEdt = passwordEdt;
         this.rols = rols;
+        this.usuarioImg = jugadorImg;
     }
 
-   // @Override
+    @Override
     public int describeContents() {
         return 0;
     }
 
-   // @Override
+    @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(userNameEdt);
         dest.writeString(usuarioId);
         dest.writeString(passwordEdt);
         dest.writeString(rols);
+        dest.writeString(usuarioImg);
     }
-
-
-
-*/
-
-
 }

@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView newUserTV;
     private FirebaseAuth mAuth;
     private ProgressBar loadingPB;
-
+    private String rolEdt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         // inicializando todas nuestras variables.
         userNameEdt = findViewById(R.id.idEdtUserName);
         passwordEdt = findViewById(R.id.idEdtPassword);
+         rolEdt = "Usuario";
         loginBtn = findViewById(R.id.idBtnLogin);
         newUserTV = findViewById(R.id.idTVNewUser);
         mAuth = FirebaseAuth.getInstance();
@@ -58,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 //obteniendo datos de nuestro edit text en la línea de abajo.
                 String email = userNameEdt.getText().toString();
                 String password = passwordEdt.getText().toString();
+                rolEdt = "Usuario";
                 // en la línea de abajo validando la entrada de texto.
                 if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)) {
                     Toast.makeText(LoginActivity.this, "Please enter your credentials..", Toast.LENGTH_SHORT).show();
