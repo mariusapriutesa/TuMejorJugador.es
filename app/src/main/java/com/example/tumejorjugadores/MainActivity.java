@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     private ArrayList<JugadorRVModal> jugadorRVModalArrayList;
     private com.example.tumejorjugadores.JugadorRVAdapter jugadorRVAdapter;
     private RelativeLayout homeRL;
-    private Object JugadorRVModal;
     private CheckBox c1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 return true;
             }
         });
+
+
+
 
         // en la línea de abajo estamos obteniendo la referencia de la base de datos.
         databaseReference = firebaseDatabase.getReference("Jugadores");

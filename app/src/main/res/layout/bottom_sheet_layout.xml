@@ -117,7 +117,7 @@
             android:layout_weight="1"
             app:useMaterialThemeColors="false"
             android:button="@drawable/selector_favoritos"
-            android:text="CheckBox" />
+            />
     </LinearLayout>
 
 
