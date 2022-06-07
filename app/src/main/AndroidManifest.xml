@@ -18,6 +18,9 @@
             android:name=".RegisterActivity"
             android:label="Register" />
         <activity
+            android:name=".UserActivity"
+            android:label="User" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>

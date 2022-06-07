@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--especificando el elemento para mostrar la opción-->
     <item
         android:id="@+id/idLogOut"
@@ -8,5 +9,6 @@
     <item
         android:id="@+id/favoritos"
         android:icon="@android:drawable/star_big_off"
-        android:title="Favoritos" />
+        android:title="Setting" />
+
 </menu>
