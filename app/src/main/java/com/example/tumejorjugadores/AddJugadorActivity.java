@@ -81,6 +81,7 @@ public class AddJugadorActivity extends AppCompatActivity {
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                         //en la línea de abajo estamos configurando datos en nuestra base de datos de firebase.
                         databaseReference.child(jugadorID).setValue(jugadorRVModal);
                         //displaying a toast message.

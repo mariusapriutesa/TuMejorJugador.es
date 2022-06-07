@@ -35,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private TextView loginTV;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
     private Button registerBtn;
     private FirebaseAuth mAuth;
     private ProgressBar loadingPB;
@@ -89,8 +88,10 @@ public class RegisterActivity extends AppCompatActivity {
                 String cnfPwd = confirmPwdEdt.getText().toString();
 
                 //***
-
-                usuarioId = userName;
+               FirebaseDatabase database=firebaseDatabase;
+                String userName2=userName.replace("@","0");
+                userName2 = userName2.replace(".","0");
+                usuarioId =userName2;
                 String rolEdt="Usuario";
                 usuarioImg="sda";
                 //comprobando si la contraseña y la contraseña de confirmación son iguales o no.
@@ -111,8 +112,13 @@ public class RegisterActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 UsuarioRVModal usuarioRVModal = new UsuarioRVModal(usuarioId,userName, usuarioImg,passwordEdt.getText().toString(), rolEdt);
                                 loadingPB.setVisibility(View.GONE);
-                                firebaseDatabase.getReference().child("Usuarios").setValue(usuarioRVModal);
+
+                                firebaseDatabase.getReference("Usuarios").child(String.valueOf(usuarioId)).setValue(usuarioRVModal);
+
                                 Toast.makeText(RegisterActivity.this, "Usuario Registrado..", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(i);
+                                finish();
 
                             } else {
                                 Log.i("koala","soy 3");

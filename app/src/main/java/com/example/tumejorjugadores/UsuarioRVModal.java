@@ -16,13 +16,7 @@ public class UsuarioRVModal implements Parcelable {
 
 
 
-    public String getUsuarioId() {
-        return usuarioId;
-    }
 
-    public void setUsuarioId(String usuarioId) {
-        this.usuarioId = usuarioId;
-    }
 
 
     //creando un constructor vacio.
