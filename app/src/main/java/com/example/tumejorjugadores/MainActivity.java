@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user);
+        setContentView(R.layout.activity_main);
 
 
 

@@ -2,76 +2,134 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/idRLHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_shade_1"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.cardview.widget.CardView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="14dp"
-        app:cardElevation="8dp">
+        android:background="#2196F3"
+        android:minHeight="?attr/actionBarSize"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/cardview_light_background" />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_view"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:defaultQueryHint="Search..."
-            app:iconifiedByDefault="false">
-
-        </androidx.appcompat.widget.SearchView>
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/idRVJugadores"
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/jugador_rv_item"
+        android:layout_below="@id/toolbar"
+        android:id="@+id/drawer"
+        tools:openDrawer="start"
+        android:fitsSystemWindows="false">
 
 
-        />
-
-    <ProgressBar
-        android:id="@+id/idPBLoading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="185dp"
-        android:layout_marginTop="223dp"
-        android:layout_marginEnd="178dp"
-        android:layout_marginBottom="390dp"
-        android:indeterminate="true"
-        android:indeterminateDrawable="@drawable/progress_back" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/idFABAddJugador"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/ic_add"
-        app:background="@color/black_shade_1"
-        app:backgroundTint="@color/black_shade_2"
-        app:tint="@color/white"
-        tools:ignore="SpeakableTextPresentCheck"
-        android:contentDescription="TODO" />
 
 
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/idRLHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_shade_1"
+            tools:context=".MainActivity">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="14dp"
+                app:cardElevation="8dp">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/search_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:defaultQueryHint="Search..."
+                    app:iconifiedByDefault="false">
+
+                </androidx.appcompat.widget.SearchView>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/idRVJugadores"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/jugador_rv_item"
+
+
+                />
+
+            <ProgressBar
+                android:id="@+id/idPBLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="185dp"
+                android:layout_marginTop="223dp"
+                android:layout_marginEnd="178dp"
+                android:layout_marginBottom="390dp"
+                android:indeterminate="true"
+                android:indeterminateDrawable="@drawable/progress_back" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/idFABAddJugador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_add"
+                app:background="@color/black_shade_1"
+                app:backgroundTint="@color/black_shade_2"
+                app:tint="@color/white"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:contentDescription="TODO" />
+
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:itemTextAppearance="@style/DrawerTheme"
+            app:theme="@style/DrawerTheme"
+            android:id="@+id/navmenu"
+            app:menu="@menu/iconmenu"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/navheader"
+            android:backgroundTint="#F1EEEE"
+            app:itemBackground="@drawable/nav_item_background"
+            app:itemTextColor="#525557"
+            app:itemIconTint="#525557"
+            android:layout_gravity="start"/>
+
+
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 
 </RelativeLayout>
