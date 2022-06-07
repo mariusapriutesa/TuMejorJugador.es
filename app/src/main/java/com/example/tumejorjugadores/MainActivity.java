@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -18,13 +20,18 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -52,17 +59,61 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     private com.example.tumejorjugadores.JugadorRVAdapter jugadorRVAdapter;
     private RelativeLayout homeRL;
     private CheckBox c1;
+    NavigationView nav;
+    ActionBarDrawerToggle toggle;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.user);
+
+
+
+        Window window = getWindow();
+        // Show status bar
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        nav=(NavigationView)findViewById(R.id.navmenu);
+        drawerLayout=(DrawerLayout)findViewById(R.id.drawer);
+
+        toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem)
+            {
+
+                switch (menuItem.getItemId())
+                {
+                    case R.id.menu_home :
+                        Toast.makeText(getApplicationContext(),"Home Panel is Open",Toast.LENGTH_LONG).show();
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+
+
+                }
+
+                return true;
+            }
+        });
+
+
+
+
+
+
         //initializing all our variables.
         jugadorRV = findViewById(R.id.idRVJugadores);
         homeRL = findViewById(R.id.idRLBSheet);
         loadingPB = findViewById(R.id.idPBLoading);
         addJugadorFAB = findViewById(R.id.idFABAddJugador);
         searchView= findViewById(R.id.search_view);
+
         c1= findViewById(R.id.favoritos);
         searchView.clearFocus();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -194,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //en la línea de abajo estamos inflando nuestro archivo de menú para mostrar nuestras opciones de menú.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.iconmenu, menu);
         return true;
     }
 
