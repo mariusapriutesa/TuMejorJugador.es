@@ -21,7 +21,7 @@ public class UsuarioRVAdapter {
     //creando variables para nuestra lista, contexto, interfaz y posición.
 
     private Context context;
-    private UsuarioRVAdapter.JugadorClickInterface usuarioClickInterface;
+    private UsuarioClickInterface usuarioClickInterface;
     MainActivity adapter;
     int lastPos = -1;
     //creando los  constructores.
@@ -53,8 +53,8 @@ public class UsuarioRVAdapter {
         }
     }
     //creando una interfaz para hacer clic
-    public interface JugadorClickInterface {
-        void onJugadorClick(int position);
+    public interface UsuarioClickInterface {
+        void onUsuarioClick(int position);
     }
 
 }

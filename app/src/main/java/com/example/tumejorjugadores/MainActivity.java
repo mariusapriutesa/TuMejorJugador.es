@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     private com.example.tumejorjugadores.JugadorRVAdapter jugadorRVAdapter;
     private RelativeLayout homeRL;
     private CheckBox c1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -158,6 +159,9 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent f = new Intent(MainActivity.this, com.example.tumejorjugadores.UserActivity.class);
+        startActivity(f);
+        this.finish();
         // agregando un clik list para la opción seleccionada en la línea de abajo.
         int id = item.getItemId();
         switch (id) {
@@ -172,12 +176,16 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 this.finish();
                 return true;
             case R.id.favoritos:
-                Toast.makeText(getApplicationContext(), "Noticias guardadas", Toast.LENGTH_LONG).show();
-                // en la línea de abajo estamos abriendo nuestra lista de noticias favoritas.
-               // Intent f = new Intent(MainActivity.this, com.example.tumejorjugadores.ActivityFavoritos.class);
-                //startActivity(f);
+               // Intent f = new Intent(MainActivity.this, com.example.tumejorjugadores.UserActivity.class);
+              //  startActivity(f);
                 this.finish();
                 return true;
+               // Toast.makeText(getApplicationContext(), "Noticias guardadas", Toast.LENGTH_LONG).show();
+                // en la línea de abajo estamos abriendo nuestra lista de noticias favoritas.
+               // Intent f = new Intent(MainActivity.this, com.example.tumejorjugadores.ActivityFavoritos.class);
+
+
+
             default:
                 return super.onOptionsItemSelected(item);
         }

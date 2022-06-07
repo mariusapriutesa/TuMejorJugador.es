@@ -7,13 +7,18 @@
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable-v24/ic_add.xml" value="0.2295" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable-v24/ic_delete.xml" value="0.2295" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable-v24/ic_edit.xml" value="0.2295" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable-v24/ic_heart_fild.xml" value="0.111" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2295" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable-v24/ic_logout.xml" value="0.2295" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable-v24/progress_back.xml" value="0.2295" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable-v24/rounded_drawable.xml" value="0.111" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable/ic_edit.xml" value="0.2045" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable/ic_heart_outline.xml" value="0.2045" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2295" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable/ic_launcher_img_background.xml" value="0.111" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable/nav_item_background.xml" value="0.225" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable/selector_favoritos.xml" value="0.2045" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/drawable/side_nav_bar.xml" value="0.117" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/activity_add_jugador.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/activity_edit_jugador.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/activity_favoritos.xml" value="0.25416666666666665" />
@@ -22,6 +27,13 @@
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/bottom_sheet_layout.xml" value="0.264" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/jugador_rv_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/navheader.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/user.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/user_activity_user.xml" value="0.2542991141219385" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/layout/user_nav_header_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/menu/activity_user_drawer.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/menu/iconmenu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/menu/menu_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2295" />
         <entry key="..\:/Users/mariu/AndroidStudioProjects/TuMejorJugadores/app/src/main/res/mipmap-anydpi-v26/ic_launcher_img.xml" value="0.2045" />

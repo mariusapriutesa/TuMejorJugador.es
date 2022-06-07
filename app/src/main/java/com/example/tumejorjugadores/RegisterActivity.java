@@ -3,6 +3,7 @@ package com.example.tumejorjugadores;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -34,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private TextView loginTV;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
     private Button registerBtn;
     private FirebaseAuth mAuth;
     private ProgressBar loadingPB;
@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
         rolEdt = "Usuario";
         firebaseDatabase = FirebaseDatabase.getInstance();
         //abajo creamos nuestra referencia a la base de datos.
-        databaseReference = firebaseDatabase.getReference("Usuarios");
+
 
 
 
@@ -88,8 +88,10 @@ public class RegisterActivity extends AppCompatActivity {
                 String cnfPwd = confirmPwdEdt.getText().toString();
 
                 //***
-
-                usuarioId = userName;
+               FirebaseDatabase database=firebaseDatabase;
+                String userName2=userName.replace("@","0");
+                userName2 = userName2.replace(".","0");
+                usuarioId =userName2;
                 String rolEdt="Usuario";
                 usuarioImg="sda";
                 //comprobando si la contraseña y la contraseña de confirmación son iguales o no.
@@ -102,35 +104,25 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     // en la línea de abajo estamos creando un nuevo usuario al pasar el correo electrónico y la contraseña.
                     mAuth.createUserWithEmailAndPassword(userName, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            UsuarioRVAdapter usuarioRVModal = new UsuarioRVAdapter(usuarioId,userName, usuarioImg,passwordEdt, rolEdt);
 
                             // en la línea de abajo estamos comprobando si la tarea es exitosa o no.
                             if (task.isSuccessful()) {
-                                databaseReference.addValueEventListener(new ValueEventListener() {
+                                UsuarioRVModal usuarioRVModal = new UsuarioRVModal(usuarioId,userName, usuarioImg,passwordEdt.getText().toString(), rolEdt);
+                                loadingPB.setVisibility(View.GONE);
 
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        //en la línea de abajo estamos configurando datos en nuestra base de datos de firebase.
-                                        databaseReference.child(usuarioId).setValue(usuarioRVModal);
-                                        //starting el main activity.
-                                        //  startActivity(new Intent(.this, com.example.tumejorjugadores.MainActivity.class));
-                                        loadingPB.setVisibility(View.GONE);
-                                        Toast.makeText(RegisterActivity.this, "Usuario Registrado..", Toast.LENGTH_SHORT).show();
-                                     //   Intent i = new Intent(RegisterActivity.this, com.example.tumejorjugadores.LoginActivity.class);
-                                    //    startActivity(i);
-                                      //  finish();
-                                    }
+                                firebaseDatabase.getReference("Usuarios").child(String.valueOf(usuarioId)).setValue(usuarioRVModal);
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-                                        //mostrando un mensaje de error en la línea de abajo.
-                                        Toast.makeText(RegisterActivity.this, "Error en añadir la noticia..", Toast.LENGTH_SHORT).show();
-                                    }
+                                Toast.makeText(RegisterActivity.this, "Usuario Registrado..", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(i);
+                                finish();
 
-                                });
                             } else {
+                                Log.i("koala","soy 3");
+
                                 //en otra condición, estamos mostrando un toast mesaje de falla.
                                 loadingPB.setVisibility(View.GONE);
                                 Toast.makeText(RegisterActivity.this, "No se ha podido registrar el usuario..", Toast.LENGTH_SHORT).show();

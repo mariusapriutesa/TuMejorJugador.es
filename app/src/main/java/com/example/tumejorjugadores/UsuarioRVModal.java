@@ -3,6 +3,8 @@ package com.example.tumejorjugadores;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class UsuarioRVModal implements Parcelable {
    //creating variables for our different fields.
     private String userNameEdt;
@@ -13,13 +15,8 @@ public class UsuarioRVModal implements Parcelable {
 
 
 
-    public String getUsuarioId() {
-        return usuarioId;
-    }
 
-    public void setUsuarioId(String usuarioId) {
-        this.usuarioId = usuarioId;
-    }
+
 
 
     //creando un constructor vacio.
