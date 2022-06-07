@@ -57,7 +57,7 @@ public class AddJugadorActivity extends AppCompatActivity {
         loadingPB = findViewById(R.id.idPBLoading);
         firebaseDatabase = FirebaseDatabase.getInstance();
         //abajo creamos nuestra referencia a la base de datos.
-        databaseReference = firebaseDatabase.getReference("Jugadores2   ");
+        databaseReference = firebaseDatabase.getReference("Jugadores");
         //agregando onclickListener para nuestro botón de agregar noticias.
         addJugadorBtn.setOnClickListener(new View.OnClickListener() {
             @Override
