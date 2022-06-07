@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -69,9 +68,10 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();
 
 
-        Window window = getWindow();
+     //   Window window = getWindow();
         // Show status bar
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
@@ -94,19 +94,21 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                         Toast.makeText(getApplicationContext(),"Home Panel is Open",Toast.LENGTH_LONG).show();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
-
+                    case R.id.idLogOut:
+                        //mostrando a toast message en el usuario cerró la sesión en el interior al hacer clic.
+                        Toast.makeText(getApplicationContext(), "User Logged Out", Toast.LENGTH_LONG).show();
+                        // En la línea inferior estamos cerrando la sesión de nuestra usuaria.
+                        mAuth.signOut();
+                        // en la línea de abajo estamos abriendo nuestra actividad de inicio de sesión.
+                        Intent i = new Intent(MainActivity.this, com.example.tumejorjugadores.LoginActivity.class);
+                        startActivity(i);
+                        return true;
 
                 }
 
                 return true;
             }
         });
-
-
-
-
-
-
         //initializing all our variables.
         jugadorRV = findViewById(R.id.idRVJugadores);
         homeRL = findViewById(R.id.idRLBSheet);
@@ -131,9 +133,6 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 return true;
             }
         });
-
-
-
 
         // en la línea de abajo estamos obteniendo la referencia de la base de datos.
         databaseReference = firebaseDatabase.getReference("Jugadores");
@@ -207,48 +206,6 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         // llamando a un método para mostrar una hoja inferior en la línea de abajo.
         displayBottomSheet(jugadorRVModalArrayList.get(position));
     }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent f = new Intent(MainActivity.this, com.example.tumejorjugadores.UserActivity.class);
-        startActivity(f);
-        this.finish();
-        // agregando un clik list para la opción seleccionada en la línea de abajo.
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.idLogOut:
-                //mostrando a toast message en el usuario cerró la sesión en el interior al hacer clic.
-                Toast.makeText(getApplicationContext(), "User Logged Out", Toast.LENGTH_LONG).show();
-                // En la línea inferior estamos cerrando la sesión de nuestra usuaria.
-                mAuth.signOut();
-                // en la línea de abajo estamos abriendo nuestra actividad de inicio de sesión.
-                Intent i = new Intent(MainActivity.this, com.example.tumejorjugadores.LoginActivity.class);
-                startActivity(i);
-                this.finish();
-                return true;
-            case R.id.favoritos:
-               // Intent f = new Intent(MainActivity.this, com.example.tumejorjugadores.UserActivity.class);
-              //  startActivity(f);
-                this.finish();
-                return true;
-               // Toast.makeText(getApplicationContext(), "Noticias guardadas", Toast.LENGTH_LONG).show();
-                // en la línea de abajo estamos abriendo nuestra lista de noticias favoritas.
-               // Intent f = new Intent(MainActivity.this, com.example.tumejorjugadores.ActivityFavoritos.class);
-
-
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //en la línea de abajo estamos inflando nuestro archivo de menú para mostrar nuestras opciones de menú.
-        getMenuInflater().inflate(R.menu.iconmenu, menu);
-        return true;
-    }
-
     private void displayBottomSheet(JugadorRVModal modal) {
         // en la línea de abajo estamos creando nuestro cuadro de diálogo de hoja inferior.
         final BottomSheetDialog bottomSheetTeachersDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
@@ -288,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
             }
         });
 
-        editBtn.setVisibility(View.GONE);
+        editBtn.setVisibility(View.VISIBLE);
         //adding click listener para nuestro botón de vista en la línea de abajo.
         viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
