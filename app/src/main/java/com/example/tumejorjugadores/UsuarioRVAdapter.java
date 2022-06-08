@@ -1,20 +1,15 @@
 package com.example.tumejorjugadores;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 public class UsuarioRVAdapter {
     private static ArrayList<UsuarioRVModal> usuarioRVModalArrayList;
@@ -23,7 +18,7 @@ public class UsuarioRVAdapter {
     private Context context;
     private UsuarioClickInterface usuarioClickInterface;
     MainActivity adapter;
-    int lastPos = -1;
+  //  int lastPos = -1;
     //creando los  constructores.
     public UsuarioRVAdapter(ArrayList<UsuarioRVModal> usuarioRVModalArrayList, Context context)  {
         this.usuarioRVModalArrayList = usuarioRVModalArrayList;
@@ -34,11 +29,16 @@ public class UsuarioRVAdapter {
 
     }
 
+
+
     public UsuarioRVAdapter(String usuarioId, String userName, String usuarioImg, TextInputEditText passwordEdt, String rolEdt) {
     }
 
     public int getItemCount() {
         return usuarioRVModalArrayList.size();
+    }
+
+    public void notifyDataSetChanged() {
     }
     ///***********************
 
@@ -52,6 +52,18 @@ public class UsuarioRVAdapter {
             //initializing all our variables on below line.
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
     //creando una interfaz para hacer clic
     public interface UsuarioClickInterface {
         void onUsuarioClick(int position);

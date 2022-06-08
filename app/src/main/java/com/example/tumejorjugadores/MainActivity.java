@@ -1,13 +1,12 @@
 package com.example.tumejorjugadores;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -18,23 +17,29 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements com.example.tumejorjugadores.JugadorRVAdapter.JugadorClickInterface {
 
@@ -42,6 +47,11 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     private FloatingActionButton addJugadorFAB;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    DatabaseReference mDatabase;
+
+
+
+
 
     private JugadorRVModal jugadorRVModal;
     private FirebaseAuth mAuth;
@@ -49,20 +59,112 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     private SearchView searchView;///eee
     private ProgressBar loadingPB;
     private ArrayList<JugadorRVModal> jugadorRVModalArrayList;
+    private ArrayList<UsuarioRVModal> usuarioRVModalArrayList;
+    private TextView usuarioName;
     private com.example.tumejorjugadores.JugadorRVAdapter jugadorRVAdapter;
+    private com.example.tumejorjugadores.UsuarioRVAdapter usuarioRVAdapter;
+
     private RelativeLayout homeRL;
     private CheckBox c1;
+    NavigationView nav;
+    ActionBarDrawerToggle toggle;
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportActionBar().hide();
+
+
+
+     //   Window window = getWindow();
+        // Show status bar
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        nav=(NavigationView)findViewById(R.id.navmenu);
+
+        //usuarioName = nav.findViewById(R.id.UsuarioEmail);
+        //usuarioName.setText("asdasd");
+
+        drawerLayout=(DrawerLayout)findViewById(R.id.drawer);
+
+        toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        usuarioName = nav.getHeaderView(0).findViewById(R.id.UsuarioEmail);
+        usuarioName.setText("asd");
+
+        mDatabase=FirebaseDatabase.getInstance().getReference();
+        //usuarioName.setText("safa");
+        mDatabase.child("Usuarios").child("userNameEdt").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                if (dataSnapshot.exists()){
+                   // TextInputEditText userNameEdt = findViewById(R.id.idEdtUserName);
+                  //  String userName = userNameEdt.getText().toString();
+
+                 //   String userName2=userName.replace("@","0");
+                //    userName2 = userName2.replace(".","0");
+
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
+
+        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem)
+            {
+
+                switch (menuItem.getItemId())
+                {
+                    case R.id.menu_home :
+                        Toast.makeText(getApplicationContext(),"Home Panel is Open",Toast.LENGTH_LONG).show();
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.idLogOut:
+                        //mostrando a toast message en el usuario cerró la sesión en el interior al hacer clic.
+                        Toast.makeText(getApplicationContext(), "User Logged Out", Toast.LENGTH_LONG).show();
+                        // En la línea inferior estamos cerrando la sesión de nuestra usuaria.
+                        mAuth.signOut();
+                        // en la línea de abajo estamos abriendo nuestra actividad de inicio de sesión.
+                        Intent i = new Intent(MainActivity.this, com.example.tumejorjugadores.LoginActivity.class);
+                        startActivity(i);
+                        return true;
+
+                }
+
+                return true;
+            }
+        });
         //initializing all our variables.
         jugadorRV = findViewById(R.id.idRVJugadores);
         homeRL = findViewById(R.id.idRLBSheet);
         loadingPB = findViewById(R.id.idPBLoading);
         addJugadorFAB = findViewById(R.id.idFABAddJugador);
         searchView= findViewById(R.id.search_view);
+
         c1= findViewById(R.id.favoritos);
         searchView.clearFocus();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -81,11 +183,9 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
             }
         });
 
-
-
-
         // en la línea de abajo estamos obteniendo la referencia de la base de datos.
         databaseReference = firebaseDatabase.getReference("Jugadores");
+
         // En la línea de abajo agregando un click listener para nuestro floating action button.
         addJugadorFAB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,53 +251,77 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         });
     }
 
+
+
+
+
+//Obtener Usuario
+
+    private void getUsuarios() {
+        // en la línea de abajo limpiando nuestra lista.
+        usuarioRVModalArrayList.clear();
+        // en la línea de abajo estamos llamando al método add child event listener para leer los datos.
+        databaseReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                //en la línea de abajo estamos ocultando nuestra barra de progreso.
+               // loadingPB.setVisibility(View.GONE);
+                // agregando una instantánea a nuestra lista de matrices en la línea de abajo.
+               usuarioRVModalArrayList.add(snapshot.getValue(UsuarioRVModal.class));
+                //notificando a nuestro adaptador que los datos han cambiado.
+                usuarioRVAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                //este método se llama cuando se agrega un nuevo hijo, estamos notificando a nuestro adaptador y haciendo que la visibilidad de la barra de progreso desaparezca.
+                loadingPB.setVisibility(View.GONE);
+                usuarioRVAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                // notificando a nuestro adaptador cuando se elimine el niño.
+                usuarioRVAdapter.notifyDataSetChanged();
+                loadingPB.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                // notificando a nuestro adaptador cuando se mueve al niño.
+                usuarioRVAdapter.notifyDataSetChanged();
+                loadingPB.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Override
     public void onJugadorClick(int position) {
         // llamando a un método para mostrar una hoja inferior en la línea de abajo.
         displayBottomSheet(jugadorRVModalArrayList.get(position));
     }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent f = new Intent(MainActivity.this, com.example.tumejorjugadores.UserActivity.class);
-        startActivity(f);
-        this.finish();
-        // agregando un clik list para la opción seleccionada en la línea de abajo.
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.idLogOut:
-                //mostrando a toast message en el usuario cerró la sesión en el interior al hacer clic.
-                Toast.makeText(getApplicationContext(), "User Logged Out", Toast.LENGTH_LONG).show();
-                // En la línea inferior estamos cerrando la sesión de nuestra usuaria.
-                mAuth.signOut();
-                // en la línea de abajo estamos abriendo nuestra actividad de inicio de sesión.
-                Intent i = new Intent(MainActivity.this, com.example.tumejorjugadores.LoginActivity.class);
-                startActivity(i);
-                this.finish();
-                return true;
-            case R.id.favoritos:
-               // Intent f = new Intent(MainActivity.this, com.example.tumejorjugadores.UserActivity.class);
-              //  startActivity(f);
-                this.finish();
-                return true;
-               // Toast.makeText(getApplicationContext(), "Noticias guardadas", Toast.LENGTH_LONG).show();
-                // en la línea de abajo estamos abriendo nuestra lista de noticias favoritas.
-               // Intent f = new Intent(MainActivity.this, com.example.tumejorjugadores.ActivityFavoritos.class);
-
-
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //en la línea de abajo estamos inflando nuestro archivo de menú para mostrar nuestras opciones de menú.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
     private void displayBottomSheet(JugadorRVModal modal) {
         // en la línea de abajo estamos creando nuestro cuadro de diálogo de hoja inferior.
         final BottomSheetDialog bottomSheetTeachersDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
@@ -237,7 +361,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
             }
         });
 
-        editBtn.setVisibility(View.GONE);
+        editBtn.setVisibility(View.VISIBLE);
         //adding click listener para nuestro botón de vista en la línea de abajo.
         viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
