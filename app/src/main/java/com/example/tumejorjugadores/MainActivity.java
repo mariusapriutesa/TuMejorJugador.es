@@ -1,13 +1,11 @@
 package com.example.tumejorjugadores;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -31,16 +29,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements com.example.tumejorjugadores.JugadorRVAdapter.JugadorClickInterface {
 
@@ -48,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     private FloatingActionButton addJugadorFAB;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    DatabaseReference mDatabase;
 
 
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     private ProgressBar loadingPB;
     private ArrayList<JugadorRVModal> jugadorRVModalArrayList;
     private ArrayList<UsuarioRVModal> usuarioRVModalArrayList;
-
+    private TextView usuarioName;
     private com.example.tumejorjugadores.JugadorRVAdapter jugadorRVAdapter;
     private com.example.tumejorjugadores.UsuarioRVAdapter usuarioRVAdapter;
 
@@ -79,18 +79,59 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         getSupportActionBar().hide();
 
 
+
      //   Window window = getWindow();
         // Show status bar
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         nav=(NavigationView)findViewById(R.id.navmenu);
+
+        //usuarioName = nav.findViewById(R.id.UsuarioEmail);
+        //usuarioName.setText("asdasd");
+
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer);
 
         toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        usuarioName = nav.getHeaderView(0).findViewById(R.id.UsuarioEmail);
+        usuarioName.setText("asd");
+
+        mDatabase=FirebaseDatabase.getInstance().getReference();
+        //usuarioName.setText("safa");
+        mDatabase.child("Usuarios").child("userNameEdt").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                if (dataSnapshot.exists()){
+                   // TextInputEditText userNameEdt = findViewById(R.id.idEdtUserName);
+                  //  String userName = userNameEdt.getText().toString();
+
+                 //   String userName2=userName.replace("@","0");
+                //    userName2 = userName2.replace(".","0");
+
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
+
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem)

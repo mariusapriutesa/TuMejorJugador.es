@@ -1,20 +1,15 @@
 package com.example.tumejorjugadores;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 public class UsuarioRVAdapter {
     private static ArrayList<UsuarioRVModal> usuarioRVModalArrayList;
