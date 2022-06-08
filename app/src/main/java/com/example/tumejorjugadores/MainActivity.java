@@ -31,6 +31,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,13 +49,15 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     DatabaseReference mDatabase;
+    FirebaseAuth auth;
+    FirebaseUser userLogged;
 
 
 
 
 
     private JugadorRVModal jugadorRVModal;
-    private FirebaseAuth mAuth;
+;
     private RecyclerView jugadorRV;//eee
     private SearchView searchView;///eee
     private ProgressBar loadingPB;
@@ -75,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         getSupportActionBar().hide();
 
@@ -98,16 +103,30 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         toggle.syncState();
 
         usuarioName = nav.getHeaderView(0).findViewById(R.id.UsuarioEmail);
-        usuarioName.setText("asd");
+
+        if(userLogged != null){
+            userLogged = auth.getCurrentUser();
+            usuarioName.setText(userLogged.getEmail());
+        }
+
+
 
         mDatabase=FirebaseDatabase.getInstance().getReference();
-        //usuarioName.setText("safa");
-        mDatabase.child("Usuarios").child("userNameEdt").addValueEventListener(new ValueEventListener() {
+        //;
+
+        String totalAdultos = getIntent().getStringExtra("usuarioId");//hemos cogido dato del a activity1
+       // pAdultos1.setText(totalAdultos);
+
+        mDatabase.child("Usuarios").child(totalAdultos).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
+
                 if (dataSnapshot.exists()){
+                    String nombre = dataSnapshot.child("userNameEdt").getValue().toString();
+                    usuarioName.setText(nombre);
+
                    // TextInputEditText userNameEdt = findViewById(R.id.idEdtUserName);
                   //  String userName = userNameEdt.getText().toString();
 
@@ -147,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                         //mostrando a toast message en el usuario cerró la sesión en el interior al hacer clic.
                         Toast.makeText(getApplicationContext(), "User Logged Out", Toast.LENGTH_LONG).show();
                         // En la línea inferior estamos cerrando la sesión de nuestra usuaria.
-                        mAuth.signOut();
+                        auth.signOut();
                         // en la línea de abajo estamos abriendo nuestra actividad de inicio de sesión.
                         Intent i = new Intent(MainActivity.this, com.example.tumejorjugadores.LoginActivity.class);
                         startActivity(i);
@@ -168,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         c1= findViewById(R.id.favoritos);
         searchView.clearFocus();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        mAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
         jugadorRVModalArrayList = new ArrayList<JugadorRVModal>();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

@@ -40,16 +40,16 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        //abajo creamos nuestra referencia a la base de datos.
+
+
         // inicializando todas nuestras variables.
         userNameEdt = findViewById(R.id.idEdtUserName);
         //****
         usuarioImg="sda";
         rolEdt = "Usuario";
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        //abajo creamos nuestra referencia a la base de datos.
-
-
-
 
         passwordEdt = findViewById(R.id.idEdtPassword);
         loadingPB = findViewById(R.id.idPBLoading);
@@ -110,10 +110,15 @@ public class RegisterActivity extends AppCompatActivity {
                                 loadingPB.setVisibility(View.GONE);
 
                                 firebaseDatabase.getReference("Usuarios").child(String.valueOf(usuarioId)).setValue(usuarioRVModal);
+                                Intent i2 =new Intent(RegisterActivity.this,MainActivity.class);
+
+                                i2.putExtra("usuarioId",String.valueOf(usuarioId));
 
                                 Toast.makeText(RegisterActivity.this, "Usuario Registrado..", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-                                startActivity(i);
+                              //  Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+                               // startActivity(i);
+                                startActivity(i2);
+
                                 finish();
 
                             } else {
