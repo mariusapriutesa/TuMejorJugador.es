@@ -115,9 +115,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="330dp"
             android:layout_weight="1"
-            app:useMaterialThemeColors="false"
             android:button="@drawable/selector_favoritos"
-            />
+            app:useMaterialThemeColors="false" />
     </LinearLayout>
 
 

@@ -23,7 +23,7 @@ public class UsuarioRVAdapter {
     private Context context;
     private UsuarioClickInterface usuarioClickInterface;
     MainActivity adapter;
-    int lastPos = -1;
+  //  int lastPos = -1;
     //creando los  constructores.
     public UsuarioRVAdapter(ArrayList<UsuarioRVModal> usuarioRVModalArrayList, Context context)  {
         this.usuarioRVModalArrayList = usuarioRVModalArrayList;
@@ -34,11 +34,16 @@ public class UsuarioRVAdapter {
 
     }
 
+
+
     public UsuarioRVAdapter(String usuarioId, String userName, String usuarioImg, TextInputEditText passwordEdt, String rolEdt) {
     }
 
     public int getItemCount() {
         return usuarioRVModalArrayList.size();
+    }
+
+    public void notifyDataSetChanged() {
     }
     ///***********************
 
@@ -52,6 +57,18 @@ public class UsuarioRVAdapter {
             //initializing all our variables on below line.
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
     //creando una interfaz para hacer clic
     public interface UsuarioClickInterface {
         void onUsuarioClick(int position);

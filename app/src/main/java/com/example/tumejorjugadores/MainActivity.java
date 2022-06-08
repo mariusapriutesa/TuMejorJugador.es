@@ -49,13 +49,21 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
+
+
+
+
     private JugadorRVModal jugadorRVModal;
     private FirebaseAuth mAuth;
     private RecyclerView jugadorRV;//eee
     private SearchView searchView;///eee
     private ProgressBar loadingPB;
     private ArrayList<JugadorRVModal> jugadorRVModalArrayList;
+    private ArrayList<UsuarioRVModal> usuarioRVModalArrayList;
+
     private com.example.tumejorjugadores.JugadorRVAdapter jugadorRVAdapter;
+    private com.example.tumejorjugadores.UsuarioRVAdapter usuarioRVAdapter;
+
     private RelativeLayout homeRL;
     private CheckBox c1;
     NavigationView nav;
@@ -136,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
 
         // en la línea de abajo estamos obteniendo la referencia de la base de datos.
         databaseReference = firebaseDatabase.getReference("Jugadores");
+
         // En la línea de abajo agregando un click listener para nuestro floating action button.
         addJugadorFAB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,6 +209,72 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
             }
         });
     }
+
+
+
+
+
+//Obtener Usuario
+
+    private void getUsuarios() {
+        // en la línea de abajo limpiando nuestra lista.
+        usuarioRVModalArrayList.clear();
+        // en la línea de abajo estamos llamando al método add child event listener para leer los datos.
+        databaseReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                //en la línea de abajo estamos ocultando nuestra barra de progreso.
+               // loadingPB.setVisibility(View.GONE);
+                // agregando una instantánea a nuestra lista de matrices en la línea de abajo.
+               usuarioRVModalArrayList.add(snapshot.getValue(UsuarioRVModal.class));
+                //notificando a nuestro adaptador que los datos han cambiado.
+                usuarioRVAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                //este método se llama cuando se agrega un nuevo hijo, estamos notificando a nuestro adaptador y haciendo que la visibilidad de la barra de progreso desaparezca.
+                loadingPB.setVisibility(View.GONE);
+                usuarioRVAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                // notificando a nuestro adaptador cuando se elimine el niño.
+                usuarioRVAdapter.notifyDataSetChanged();
+                loadingPB.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                // notificando a nuestro adaptador cuando se mueve al niño.
+                usuarioRVAdapter.notifyDataSetChanged();
+                loadingPB.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public void onJugadorClick(int position) {
