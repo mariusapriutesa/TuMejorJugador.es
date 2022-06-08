@@ -51,13 +51,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     DatabaseReference mDatabase;
     FirebaseAuth auth;
     FirebaseUser userLogged;
-
-
-
-
-
     private JugadorRVModal jugadorRVModal;
-;
     private RecyclerView jugadorRV;//eee
     private SearchView searchView;///eee
     private ProgressBar loadingPB;
@@ -66,88 +60,41 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     private TextView usuarioName;
     private com.example.tumejorjugadores.JugadorRVAdapter jugadorRVAdapter;
     private com.example.tumejorjugadores.UsuarioRVAdapter usuarioRVAdapter;
-
     private RelativeLayout homeRL;
     private CheckBox c1;
     NavigationView nav;
     ActionBarDrawerToggle toggle;
     DrawerLayout drawerLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
         getSupportActionBar().hide();
 
-
-
-     //   Window window = getWindow();
         // Show status bar
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         nav=(NavigationView)findViewById(R.id.navmenu);
-
-        //usuarioName = nav.findViewById(R.id.UsuarioEmail);
-        //usuarioName.setText("asdasd");
-
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer);
-
         toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
         usuarioName = nav.getHeaderView(0).findViewById(R.id.UsuarioEmail);
-
-        if(userLogged != null){
-            userLogged = auth.getCurrentUser();
-            usuarioName.setText(userLogged.getEmail());
-        }
-
-
-
         mDatabase=FirebaseDatabase.getInstance().getReference();
-        //;
-
-        String totalAdultos = getIntent().getStringExtra("usuarioId");//hemos cogido dato del a activity1
-       // pAdultos1.setText(totalAdultos);
-
-        mDatabase.child("Usuarios").child(totalAdultos).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
 
-                if (dataSnapshot.exists()){
-                    String nombre = dataSnapshot.child("userNameEdt").getValue().toString();
-                    usuarioName.setText(nombre);
-
-                   // TextInputEditText userNameEdt = findViewById(R.id.idEdtUserName);
-                  //  String userName = userNameEdt.getText().toString();
-
-                 //   String userName2=userName.replace("@","0");
-                //    userName2 = userName2.replace(".","0");
-
-
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-
-
-
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (user != null) {
+                        String userEmail = user.getEmail();
+                        usuarioName.setText(userEmail);
+                    } else {
+                        // No user is signed in
+                    }
 
 
 
@@ -177,12 +124,15 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 return true;
             }
         });
+
+
         //initializing all our variables.
         jugadorRV = findViewById(R.id.idRVJugadores);
         homeRL = findViewById(R.id.idRLBSheet);
         loadingPB = findViewById(R.id.idPBLoading);
         addJugadorFAB = findViewById(R.id.idFABAddJugador);
         searchView= findViewById(R.id.search_view);
+
 
         c1= findViewById(R.id.favoritos);
         searchView.clearFocus();
@@ -215,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 startActivity(i);
             }
         });
+
         // en la línea de abajo inicializando nuestra clase de adaptador.
         jugadorRVAdapter = new com.example.tumejorjugadores.JugadorRVAdapter(jugadorRVModalArrayList, this, this::onJugadorClick);
         // configurando el simulador de diseño para la vista del reciclador en la línea de abajo.
@@ -319,21 +270,6 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
             }
         });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @Override

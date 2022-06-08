@@ -58,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
                 loadingPB.setVisibility(View.VISIBLE);
                 //obteniendo datos de nuestro edit text en la línea de abajo.
                 String email = userNameEdt.getText().toString();
+
+
                 String password = passwordEdt.getText().toString();
                 rolEdt = "Usuario";
                 // en la línea de abajo validando la entrada de texto.
@@ -71,11 +73,19 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         // en la línea de abajo estamos comprobando si la tarea es exitosa o no.
                         if (task.isSuccessful()) {
+                            String userName2=email.replace("@","0");
+                            userName2 = userName2.replace(".","0");
+                          String  usuarioId =userName2;
+
+
+
                             //en la línea de abajo estamos ocultando nuestra barra de progreso.
                             loadingPB.setVisibility(View.GONE);
                             Toast.makeText(LoginActivity.this, "Login Successful..", Toast.LENGTH_SHORT).show();
                             // En la línea de abajo estamos abriendo nuestra mainactivity.
                             Intent i = new Intent(LoginActivity.this, com.example.tumejorjugadores.MainActivity.class);
+                            i.putExtra("usuarioId",String.valueOf(usuarioId));
+
                             startActivity(i);
                             finish();
                         } else {
