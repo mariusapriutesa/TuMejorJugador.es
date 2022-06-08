@@ -31,6 +31,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,13 +49,9 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     DatabaseReference mDatabase;
-
-
-
-
-
+    FirebaseAuth auth;
+    FirebaseUser userLogged;
     private JugadorRVModal jugadorRVModal;
-    private FirebaseAuth mAuth;
     private RecyclerView jugadorRV;//eee
     private SearchView searchView;///eee
     private ProgressBar loadingPB;
@@ -63,72 +60,41 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     private TextView usuarioName;
     private com.example.tumejorjugadores.JugadorRVAdapter jugadorRVAdapter;
     private com.example.tumejorjugadores.UsuarioRVAdapter usuarioRVAdapter;
-
     private RelativeLayout homeRL;
     private CheckBox c1;
     NavigationView nav;
     ActionBarDrawerToggle toggle;
     DrawerLayout drawerLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         getSupportActionBar().hide();
 
-
-
-     //   Window window = getWindow();
         // Show status bar
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         nav=(NavigationView)findViewById(R.id.navmenu);
-
-        //usuarioName = nav.findViewById(R.id.UsuarioEmail);
-        //usuarioName.setText("asdasd");
-
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer);
-
         toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
         usuarioName = nav.getHeaderView(0).findViewById(R.id.UsuarioEmail);
-        usuarioName.setText("asd");
-
         mDatabase=FirebaseDatabase.getInstance().getReference();
-        //usuarioName.setText("safa");
-        mDatabase.child("Usuarios").child("userNameEdt").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-                if (dataSnapshot.exists()){
-                   // TextInputEditText userNameEdt = findViewById(R.id.idEdtUserName);
-                  //  String userName = userNameEdt.getText().toString();
-
-                 //   String userName2=userName.replace("@","0");
-                //    userName2 = userName2.replace(".","0");
 
 
 
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-
-
-
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (user != null) {
+                        String userEmail = user.getEmail();
+                        usuarioName.setText(userEmail);
+                    } else {
+                        // No user is signed in
+                    }
 
 
 
@@ -147,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                         //mostrando a toast message en el usuario cerró la sesión en el interior al hacer clic.
                         Toast.makeText(getApplicationContext(), "User Logged Out", Toast.LENGTH_LONG).show();
                         // En la línea inferior estamos cerrando la sesión de nuestra usuaria.
-                        mAuth.signOut();
+                        auth.signOut();
                         // en la línea de abajo estamos abriendo nuestra actividad de inicio de sesión.
                         Intent i = new Intent(MainActivity.this, com.example.tumejorjugadores.LoginActivity.class);
                         startActivity(i);
@@ -158,6 +124,8 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 return true;
             }
         });
+
+
         //initializing all our variables.
         jugadorRV = findViewById(R.id.idRVJugadores);
         homeRL = findViewById(R.id.idRLBSheet);
@@ -165,10 +133,11 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         addJugadorFAB = findViewById(R.id.idFABAddJugador);
         searchView= findViewById(R.id.search_view);
 
+
         c1= findViewById(R.id.favoritos);
         searchView.clearFocus();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        mAuth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
         jugadorRVModalArrayList = new ArrayList<JugadorRVModal>();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -196,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 startActivity(i);
             }
         });
+
         // en la línea de abajo inicializando nuestra clase de adaptador.
         jugadorRVAdapter = new com.example.tumejorjugadores.JugadorRVAdapter(jugadorRVModalArrayList, this, this::onJugadorClick);
         // configurando el simulador de diseño para la vista del reciclador en la línea de abajo.
@@ -205,7 +175,6 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         // en la línea de abajo llamando a un método para obtener jugadores de la base de datos.
         getJugadores();
     }
-
 
     private void getJugadores() {
         // en la línea de abajo limpiando nuestra lista.
@@ -250,71 +219,6 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
             }
         });
     }
-
-
-
-
-
-//Obtener Usuario
-
-    private void getUsuarios() {
-        // en la línea de abajo limpiando nuestra lista.
-        usuarioRVModalArrayList.clear();
-        // en la línea de abajo estamos llamando al método add child event listener para leer los datos.
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                //en la línea de abajo estamos ocultando nuestra barra de progreso.
-               // loadingPB.setVisibility(View.GONE);
-                // agregando una instantánea a nuestra lista de matrices en la línea de abajo.
-               usuarioRVModalArrayList.add(snapshot.getValue(UsuarioRVModal.class));
-                //notificando a nuestro adaptador que los datos han cambiado.
-                usuarioRVAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                //este método se llama cuando se agrega un nuevo hijo, estamos notificando a nuestro adaptador y haciendo que la visibilidad de la barra de progreso desaparezca.
-                loadingPB.setVisibility(View.GONE);
-                usuarioRVAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                // notificando a nuestro adaptador cuando se elimine el niño.
-                usuarioRVAdapter.notifyDataSetChanged();
-                loadingPB.setVisibility(View.GONE);
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                // notificando a nuestro adaptador cuando se mueve al niño.
-                usuarioRVAdapter.notifyDataSetChanged();
-                loadingPB.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     @Override
@@ -384,17 +288,17 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 filteredList.add(j);
             }
         }
-
+        //ESTE SE USA PARA BUSCAR CADA VEZ QUE SE ESCRIBE O BORRA UNA LETRA, CUNADO SE MODIFICA EL TEXTO
         if (filteredList.isEmpty()) {
                Toast.makeText(this,"No date fond", Toast.LENGTH_SHORT).show();
-            } else { //SI RECIBE TEXTO, LIMPIAMOS LA LISTA, Y VAMOS AÑADIENDO LOS USUARIOS QUE CONTENGAN ESE TEXTO
+            } else { //SI RECIBE TEXTO, LIMPIAMOS LA LISTA, Y VAMOS AÑADIENDO LAS NOTICIAS QUE CONTENGAN ESE TEXTO
             jugadorRVAdapter.setFilteredList(filteredList);
 
             }
 
 
         }
-    //ESTE SE USA PARA BUSCAR CADA VEZ QUE SE ESCRIBE O BORRA UNA LETRA, CUNADO SE MODIFICA EL TEXTO
+
 
 
     }

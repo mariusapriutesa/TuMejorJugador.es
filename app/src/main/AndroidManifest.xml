@@ -9,9 +9,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TuMejorJugadores">
         <activity
-            android:name=".NavHeaderActivity"
-            android:exported="false" />
-        <activity
             android:name=".EditJugadorActivity"
             android:label="Edit Noticia" />
         <activity
