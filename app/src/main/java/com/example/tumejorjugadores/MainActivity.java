@@ -176,7 +176,6 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         getJugadores();
     }
 
-
     private void getJugadores() {
         // en la línea de abajo limpiando nuestra lista.
         jugadorRVModalArrayList.clear();
@@ -211,56 +210,6 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 // notificando a nuestro adaptador cuando se mueve al niño.
                 jugadorRVAdapter.notifyDataSetChanged();
-                loadingPB.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-
-
-
-
-//Obtener Usuario
-
-    private void getUsuarios() {
-        // en la línea de abajo limpiando nuestra lista.
-        usuarioRVModalArrayList.clear();
-        // en la línea de abajo estamos llamando al método add child event listener para leer los datos.
-        databaseReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                //en la línea de abajo estamos ocultando nuestra barra de progreso.
-               // loadingPB.setVisibility(View.GONE);
-                // agregando una instantánea a nuestra lista de matrices en la línea de abajo.
-               usuarioRVModalArrayList.add(snapshot.getValue(UsuarioRVModal.class));
-                //notificando a nuestro adaptador que los datos han cambiado.
-                usuarioRVAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                //este método se llama cuando se agrega un nuevo hijo, estamos notificando a nuestro adaptador y haciendo que la visibilidad de la barra de progreso desaparezca.
-                loadingPB.setVisibility(View.GONE);
-                usuarioRVAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                // notificando a nuestro adaptador cuando se elimine el niño.
-                usuarioRVAdapter.notifyDataSetChanged();
-                loadingPB.setVisibility(View.GONE);
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                // notificando a nuestro adaptador cuando se mueve al niño.
-                usuarioRVAdapter.notifyDataSetChanged();
                 loadingPB.setVisibility(View.GONE);
             }
 
@@ -339,17 +288,17 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 filteredList.add(j);
             }
         }
-
+        //ESTE SE USA PARA BUSCAR CADA VEZ QUE SE ESCRIBE O BORRA UNA LETRA, CUNADO SE MODIFICA EL TEXTO
         if (filteredList.isEmpty()) {
                Toast.makeText(this,"No date fond", Toast.LENGTH_SHORT).show();
-            } else { //SI RECIBE TEXTO, LIMPIAMOS LA LISTA, Y VAMOS AÑADIENDO LOS USUARIOS QUE CONTENGAN ESE TEXTO
+            } else { //SI RECIBE TEXTO, LIMPIAMOS LA LISTA, Y VAMOS AÑADIENDO LAS NOTICIAS QUE CONTENGAN ESE TEXTO
             jugadorRVAdapter.setFilteredList(filteredList);
 
             }
 
 
         }
-    //ESTE SE USA PARA BUSCAR CADA VEZ QUE SE ESCRIBE O BORRA UNA LETRA, CUNADO SE MODIFICA EL TEXTO
+
 
 
     }
