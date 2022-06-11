@@ -12,7 +12,6 @@ public class JugadorRVModal implements Parcelable {
     private String jugadorLink;
     private String jugadorId;
 
-
     public String getJugadorId() {
         return jugadorId;
     }
@@ -20,6 +19,8 @@ public class JugadorRVModal implements Parcelable {
     public void setJugadorId(String jugadorId) {
         this.jugadorId = jugadorId;
     }
+
+
 
 
     //creando un constructor vacio.
@@ -34,6 +35,7 @@ public class JugadorRVModal implements Parcelable {
         jugadorFecha = in.readString();
         jugadorImg = in.readString();
         jugadorLink = in.readString();
+
     }
 
     public static final Creator<JugadorRVModal> CREATOR = new Creator<JugadorRVModal>() {
@@ -92,13 +94,13 @@ public class JugadorRVModal implements Parcelable {
     }
 
 
-    public JugadorRVModal(String jugadorId, String jugadorName, String jugadorDescription, String jugadorFecha,  String jugadorImg, String jugadorLink) {
+    public JugadorRVModal(String jugadorName, String jugadorDescription, String jugadorFecha, String jugadorImg, String jugadorLink, String jugadorId) {
         this.jugadorName = jugadorName;
-        this.jugadorId = jugadorId;
         this.jugadorDescription = jugadorDescription;
         this.jugadorFecha = jugadorFecha;
         this.jugadorImg = jugadorImg;
         this.jugadorLink = jugadorLink;
+        this.jugadorId = jugadorId;
     }
 
     @Override

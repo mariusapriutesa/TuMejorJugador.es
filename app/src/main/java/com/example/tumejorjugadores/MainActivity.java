@@ -49,19 +49,20 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     DatabaseReference mDatabase;
+    //****tutorial
+
+    DatabaseReference favoriteref , fvrtref,fvrt_list;
+    FirebaseDatabase database= FirebaseDatabase.getInstance();
+
     FirebaseAuth auth;
-    FirebaseUser userLogged;
-    private JugadorRVModal jugadorRVModal;
     private RecyclerView jugadorRV;//eee
     private SearchView searchView;///eee
     private ProgressBar loadingPB;
     private ArrayList<JugadorRVModal> jugadorRVModalArrayList;
-    private ArrayList<UsuarioRVModal> usuarioRVModalArrayList;
     private TextView usuarioName;
     private com.example.tumejorjugadores.JugadorRVAdapter jugadorRVAdapter;
-    private com.example.tumejorjugadores.UsuarioRVAdapter usuarioRVAdapter;
     private RelativeLayout homeRL;
-    private CheckBox c1;
+    private CheckBox CompartirBtn;
     NavigationView nav;
     ActionBarDrawerToggle toggle;
     DrawerLayout drawerLayout;
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
 
         // Show status bar
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -85,17 +87,13 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         toggle.syncState();
         usuarioName = nav.getHeaderView(0).findViewById(R.id.UsuarioEmail);
         mDatabase=FirebaseDatabase.getInstance().getReference();
-
-
-
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    if (user != null) {
+        if (user != null) {
                         String userEmail = user.getEmail();
                         usuarioName.setText(userEmail);
                     } else {
                         // No user is signed in
                     }
-
 
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -132,9 +130,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         loadingPB = findViewById(R.id.idPBLoading);
         addJugadorFAB = findViewById(R.id.idFABAddJugador);
         searchView= findViewById(R.id.search_view);
-
-
-        c1= findViewById(R.id.favoritos);
+        CompartirBtn= findViewById(R.id.checkBox);
         searchView.clearFocus();
         firebaseDatabase = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -279,6 +275,19 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
 
     }
 //search
+
+    public void buttonShareText(View view){
+        int position=1;
+        JugadorRVModal modal = jugadorRVModalArrayList.get(position);
+        Intent intentShare = new Intent(Intent.ACTION_SEND);
+        intentShare.setType("text/plain");
+String d= modal.getJugadorDescription();
+        intentShare.putExtra(Intent.EXTRA_SUBJECT,"My Subject Here ... ");
+        intentShare.putExtra(Intent.EXTRA_TEXT,d);
+
+        startActivity(Intent.createChooser(intentShare, "Shared the text ..."));
+    }
+
 
     public void filterlist(String strSearch) {
         //RECIBIMOS POR PARAMETRO EL TEXTO DEL BUSCADOR

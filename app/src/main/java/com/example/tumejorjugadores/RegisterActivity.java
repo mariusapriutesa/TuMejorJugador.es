@@ -20,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class RegisterActivity extends AppCompatActivity {
 
     //creando variables para edittext y textview, firebase auth, button y barra de progreso.
@@ -34,6 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button registerBtn;
     private FirebaseAuth mAuth;
     private ProgressBar loadingPB;
+    Boolean fvrtChecker= false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +110,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                             // en la línea de abajo estamos comprobando si la tarea es exitosa o no.
                             if (task.isSuccessful()) {
-                                UsuarioRVModal usuarioRVModal = new UsuarioRVModal(usuarioId,userName, usuarioImg,passwordEdt.getText().toString(), rolEdt);
+                                ArrayList<JugadorRVModal> Noticias = null ;
+
+                                UsuarioRVModal usuarioRVModal = new UsuarioRVModal(usuarioId,userName, usuarioImg,passwordEdt.getText().toString(), rolEdt,Noticias);
                                 loadingPB.setVisibility(View.GONE);
 
                                 firebaseDatabase.getReference("Usuarios").child(String.valueOf(usuarioId)).setValue(usuarioRVModal);
