@@ -36,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
     private Button registerBtn;
     private FirebaseAuth mAuth;
     private ProgressBar loadingPB;
-    Boolean fvrtChecker= false;
 
 
     @Override
@@ -72,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
                 Intent i = new Intent(RegisterActivity.this, com.example.tumejorjugadores.LoginActivity.class);
                 startActivity(i);
             }
+
         });
 
 
@@ -110,9 +110,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                             // en la línea de abajo estamos comprobando si la tarea es exitosa o no.
                             if (task.isSuccessful()) {
-                                ArrayList<JugadorRVModal> Noticias = null ;
 
-                                UsuarioRVModal usuarioRVModal = new UsuarioRVModal(usuarioId,userName, usuarioImg,passwordEdt.getText().toString(), rolEdt,Noticias);
+                                UsuarioRVModal usuarioRVModal = new UsuarioRVModal(usuarioId,userName, usuarioImg,passwordEdt.getText().toString(), rolEdt);
                                 loadingPB.setVisibility(View.GONE);
 
                                 firebaseDatabase.getReference("Usuarios").child(String.valueOf(usuarioId)).setValue(usuarioRVModal);
@@ -128,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 finish();
 
                             } else {
-                                Log.i("koala","soy 3");
+
 
                                 //en otra condición, estamos mostrando un toast mesaje de falla.
                                 loadingPB.setVisibility(View.GONE);

@@ -29,7 +29,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -37,7 +36,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -51,8 +49,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     DatabaseReference mDatabase;
     //****tutorial
 
-    DatabaseReference favoriteref , fvrtref,fvrt_list;
-    FirebaseDatabase database= FirebaseDatabase.getInstance();
+
 
     FirebaseAuth auth;
     private RecyclerView jugadorRV;//eee
@@ -60,9 +57,8 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     private ProgressBar loadingPB;
     private ArrayList<JugadorRVModal> jugadorRVModalArrayList;
     private TextView usuarioName;
-    private com.example.tumejorjugadores.JugadorRVAdapter jugadorRVAdapter;
+    private JugadorRVAdapter jugadorRVAdapter;
     private RelativeLayout homeRL;
-    private CheckBox CompartirBtn;
     NavigationView nav;
     ActionBarDrawerToggle toggle;
     DrawerLayout drawerLayout;
@@ -130,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         loadingPB = findViewById(R.id.idPBLoading);
         addJugadorFAB = findViewById(R.id.idFABAddJugador);
         searchView= findViewById(R.id.search_view);
-        CompartirBtn= findViewById(R.id.checkBox);
+
         searchView.clearFocus();
         firebaseDatabase = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -163,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         });
 
         // en la línea de abajo inicializando nuestra clase de adaptador.
-        jugadorRVAdapter = new com.example.tumejorjugadores.JugadorRVAdapter(jugadorRVModalArrayList, this, this::onJugadorClick);
+        jugadorRVAdapter = new JugadorRVAdapter(jugadorRVModalArrayList, this, this::onJugadorClick);
         // configurando el simulador de diseño para la vista del reciclador en la línea de abajo.
         jugadorRV.setLayoutManager(new LinearLayoutManager(this));
         //configurando el adaptador a recycler view abajo.
@@ -248,18 +244,38 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         Picasso.get().load(modal.getJugadorImg()).placeholder(R.mipmap.img).into(jugadorIV);
         Button viewBtn = layout.findViewById(R.id.idBtnVIewDetails);
         Button editBtn = layout.findViewById(R.id.idBtnEditJugador);
+        Button compartirBtn= layout.findViewById(R.id.checkBox);
 
         //agregando el click listener para nuestro edit button.
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //en la línea de abajo estamos abriendo nuestro EditJugadorActivity en la línea de abajo.
-                Intent i = new Intent(MainActivity.this, com.example.tumejorjugadores.EditJugadorActivity.class);
+                Intent i = new Intent(MainActivity.this, EditJugadorActivity.class);
                 //en la línea de abajo estamos pasando nuestro jugador modal
                 i.putExtra("jugador", modal);
                 startActivity(i);
             }
         });
+        //agregamos el click listener para nuestro button de compartir
+
+
+        compartirBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String hh= jugadorNameTV.getText().toString();
+
+                Intent intentShare = new Intent(Intent.ACTION_SEND);
+                intentShare.setType("text/plain");
+
+                intentShare.putExtra(Intent.EXTRA_SUBJECT,"My Subject Here ... ");
+                intentShare.putExtra(Intent.EXTRA_TEXT,hh);
+
+                startActivity(Intent.createChooser(intentShare, "Shared the textt ..."));
+
+            }
+        });
+
 
         editBtn.setVisibility(View.VISIBLE);
         //adding click listener para nuestro botón de vista en la línea de abajo.
@@ -268,6 +284,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
             public void onClick(View v) {
                 //en la línea de abajo estamos navegando al navegador para mostrar los detalles del jugador desde su url
                 Intent i = new Intent(Intent.ACTION_VIEW);
+                //para acceder a un url
                 i.setData(Uri.parse(modal.getJugadorLink()));
                 startActivity(i);
             }
@@ -277,13 +294,31 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
 //search
 
     public void buttonShareText(View view){
-        int position=1;
-        JugadorRVModal modal = jugadorRVModalArrayList.get(position);
+
+        final BottomSheetDialog bottomSheetTeachersDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
+        //en la línea de abajo estamos inflando un archivo de diseño para su hoja inferior.
+        View layout = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_layout, homeRL);
+        // configurando la vista de contenido para la hoja inferior en la línea de abajo.
+        bottomSheetTeachersDialog.setContentView(layout);
+        // en la línea de abajo estamos configurando un cancelable
+        bottomSheetTeachersDialog.setCancelable(false);
+        bottomSheetTeachersDialog.setCanceledOnTouchOutside(true);
+        //llamando a un método para mostrar nuestra última hoja.
+        bottomSheetTeachersDialog.show();
+        // en la línea de abajo estamos creando variables para nuestra vista de texto y vista de imagen dentro de la hoja inferior
+        //e inicializarlos con sus identificaciones.
+        TextView jugadorNameTV = layout.findViewById(R.id.idTVJugadorName);
+        TextView jugadorDescTV = layout.findViewById(R.id.idTVJugadorDesc);
+
+
+
+        String hh= jugadorNameTV.getText().toString();
+
         Intent intentShare = new Intent(Intent.ACTION_SEND);
         intentShare.setType("text/plain");
-String d= modal.getJugadorDescription();
+
         intentShare.putExtra(Intent.EXTRA_SUBJECT,"My Subject Here ... ");
-        intentShare.putExtra(Intent.EXTRA_TEXT,d);
+        intentShare.putExtra(Intent.EXTRA_TEXT,hh);
 
         startActivity(Intent.createChooser(intentShare, "Shared the textt ..."));
     }

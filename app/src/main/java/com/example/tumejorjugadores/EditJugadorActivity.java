@@ -107,7 +107,7 @@ public class EditJugadorActivity extends AppCompatActivity {
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         //mostrando un mensaje de falla en el brindis.
-                        Toast.makeText(EditJugadorActivity.this, "Ha fracasado la actualizacion del jugador..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditJugadorActivity.this, "Ha fracasado la actualizacion de la Noticia..", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

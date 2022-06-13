@@ -12,7 +12,6 @@ public class UsuarioRVModal implements Parcelable {
     private String rols;
     private String usuarioId;
     private String usuarioImg;
-    private ArrayList<JugadorRVModal> Noticias;
 
     public String getUsuarioId() {
         return usuarioId;
@@ -22,13 +21,7 @@ public class UsuarioRVModal implements Parcelable {
         this.usuarioId = usuarioId;
     }
 
-    public ArrayList<JugadorRVModal> getNoticias() {
-        return Noticias;
-    }
 
-    public void setNoticias(ArrayList<JugadorRVModal> noticias) {
-        Noticias = noticias;
-    }
 
     //creando un constructor vacio.
     public UsuarioRVModal() {
@@ -94,13 +87,12 @@ public class UsuarioRVModal implements Parcelable {
 
 
 
-    public UsuarioRVModal(String usuarioId, String userNameEdt, String passwordEdt, String rols,  String jugadorImg, ArrayList<JugadorRVModal> Noticias) {
+    public UsuarioRVModal(String usuarioId, String userNameEdt, String passwordEdt, String rols,  String jugadorImg ) {
         this.userNameEdt = userNameEdt;
         this.usuarioId = usuarioId;
         this.passwordEdt = passwordEdt;
         this.rols = rols;
         this.usuarioImg = jugadorImg;
-        this.Noticias=Noticias;
     }
 
     @Override
@@ -115,6 +107,5 @@ public class UsuarioRVModal implements Parcelable {
         dest.writeString(passwordEdt);
         dest.writeString(rols);
         dest.writeString(usuarioImg);
-        dest.writeList( Noticias);
     }
 }

@@ -1,11 +1,9 @@
 package com.example.tumejorjugadores;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -24,7 +22,6 @@ import java.util.Date;
 import java.util.Locale;
 
 public class AddJugadorActivity extends AppCompatActivity {
-    DatePickerDialog.OnDateSetListener setListener;
     //creando variables para su botón, edite texto, base de datos firebase, referencia de base de datos, barra de progreso( la animacion).
     private Button addJugadorBtn;
     private TextInputEditText jugadorNameEdt, jugadorDescEdt, jugadorImgEdt, jugadorLinkEdt;
