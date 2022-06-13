@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -26,8 +30,7 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
     private JugadorClickInterface jugadorClickInterface;
     MainActivity adapter;
     int lastPos = -1;
-    SearchView svSearch; //CREAMOS  EL OBJETO SEARCHVIEW PARA LAS BUSQUEDAS
-
+    DatabaseReference dataref;
 
     public void setFilteredList(ArrayList<JugadorRVModal> filteredList){
     jugadorRVModalArrayList=filteredList;
@@ -56,6 +59,14 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String currentUserid=user.getUid();
+        int value = (int) holder.getAdapterPosition();
+        String vall=value+"";
+        //final  String postkey=dataref.getRef(value.toString).getKey();
+
+
+
         //configurando datos para nuestro elemento de RecyclerView en la línea de abajo.
         JugadorRVModal jugadorRVModal = jugadorRVModalArrayList.get(position);
         holder.jugadorTV.setText(jugadorRVModal.getJugadorName());

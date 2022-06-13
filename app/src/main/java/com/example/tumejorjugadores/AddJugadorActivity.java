@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -33,16 +34,15 @@ public class AddJugadorActivity extends AppCompatActivity {
     private String jugadorID;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-
         setContentView(R.layout.activity_add_jugador);
         //initializando todas las variables.
         addJugadorBtn = findViewById(R.id.idBtnAddJugador);
+
         jugadorNameEdt = findViewById(R.id.idEdtJugadorName);
         jugadorDescEdt = findViewById(R.id.idEdtJugadorDescription);
         //  jugadorFechaEdt = findViewById(R.id.idEdtJugadorDescription);
@@ -68,6 +68,8 @@ public class AddJugadorActivity extends AppCompatActivity {
 
                 String jugadorLink = jugadorLinkEdt.getText().toString();
                 jugadorID = jugadorName;
+
+
 
                 //en la línea de abajo estamos pasando todos los datos a nuestra clase jugadorRVModal.
                 JugadorRVModal jugadorRVModal = new JugadorRVModal(jugadorID, jugadorName, jugadorDesc, jugadorFecha,  jugadorImg, jugadorLink);
