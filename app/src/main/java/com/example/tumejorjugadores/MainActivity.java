@@ -285,7 +285,7 @@ String d= modal.getJugadorDescription();
         intentShare.putExtra(Intent.EXTRA_SUBJECT,"My Subject Here ... ");
         intentShare.putExtra(Intent.EXTRA_TEXT,d);
 
-        startActivity(Intent.createChooser(intentShare, "Shared the text ..."));
+        startActivity(Intent.createChooser(intentShare, "Shared the textt ..."));
     }
 
 
