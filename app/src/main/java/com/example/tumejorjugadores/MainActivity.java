@@ -258,8 +258,6 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
             }
         });
         //agregamos el click listener para nuestro button de compartir
-
-
         compartirBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -275,8 +273,6 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
 
             }
         });
-
-
         editBtn.setVisibility(View.VISIBLE);
         //adding click listener para nuestro botón de vista en la línea de abajo.
         viewBtn.setOnClickListener(new View.OnClickListener() {
@@ -291,39 +287,8 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         });
 
     }
+
 //search
-
-    public void buttonShareText(View view){
-
-        final BottomSheetDialog bottomSheetTeachersDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
-        //en la línea de abajo estamos inflando un archivo de diseño para su hoja inferior.
-        View layout = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_layout, homeRL);
-        // configurando la vista de contenido para la hoja inferior en la línea de abajo.
-        bottomSheetTeachersDialog.setContentView(layout);
-        // en la línea de abajo estamos configurando un cancelable
-        bottomSheetTeachersDialog.setCancelable(false);
-        bottomSheetTeachersDialog.setCanceledOnTouchOutside(true);
-        //llamando a un método para mostrar nuestra última hoja.
-        bottomSheetTeachersDialog.show();
-        // en la línea de abajo estamos creando variables para nuestra vista de texto y vista de imagen dentro de la hoja inferior
-        //e inicializarlos con sus identificaciones.
-        TextView jugadorNameTV = layout.findViewById(R.id.idTVJugadorName);
-        TextView jugadorDescTV = layout.findViewById(R.id.idTVJugadorDesc);
-
-
-
-        String hh= jugadorNameTV.getText().toString();
-
-        Intent intentShare = new Intent(Intent.ACTION_SEND);
-        intentShare.setType("text/plain");
-
-        intentShare.putExtra(Intent.EXTRA_SUBJECT,"My Subject Here ... ");
-        intentShare.putExtra(Intent.EXTRA_TEXT,hh);
-
-        startActivity(Intent.createChooser(intentShare, "Shared the textt ..."));
-    }
-
-
     public void filterlist(String strSearch) {
         //RECIBIMOS POR PARAMETRO EL TEXTO DEL BUSCADOR
         ArrayList<com.example.tumejorjugadores.JugadorRVModal> filteredList = new ArrayList<>();

@@ -66,8 +66,6 @@ public class AddJugadorActivity extends AppCompatActivity {
                 String jugadorLink = jugadorLinkEdt.getText().toString();
                 jugadorID = jugadorName;
 
-
-
                 //en la línea de abajo estamos pasando todos los datos a nuestra clase jugadorRVModal.
                 JugadorRVModal jugadorRVModal = new JugadorRVModal(jugadorID, jugadorName, jugadorDesc, jugadorFecha,  jugadorImg, jugadorLink);
                 //en la línea de abajo estamos llamando a un evento de valor agregado para pasar datos a la base de datos de firebase.

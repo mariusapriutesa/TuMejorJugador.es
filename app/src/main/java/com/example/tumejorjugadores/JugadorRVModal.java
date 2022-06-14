@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class JugadorRVModal implements Parcelable {
-    //creating variables for our different fields.
+    //creando variables para nuestros campos.
     private String jugadorName;
     private String jugadorDescription;
     private String jugadorFecha;
