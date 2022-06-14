@@ -3,10 +3,13 @@ package com.example.tumejorjugadores.ApiClases;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,6 +19,7 @@ import com.example.tumejorjugadores.ApiModel.NewsApiResponse;
 import com.example.tumejorjugadores.ApiModel.NewsHeadline;
 import com.example.tumejorjugadores.Interfaces.OnFetchDataListener;
 import com.example.tumejorjugadores.Interfaces.SelectListener;
+import com.example.tumejorjugadores.MainActivity;
 import com.example.tumejorjugadores.R;
 import com.example.tumejorjugadores.ApiModel.NewsApiResponse;
 import com.example.tumejorjugadores.ApiModel.NewsHeadline;
@@ -34,7 +38,7 @@ public class LatinAmericaNoticiasActivity extends AppCompatActivity implements S
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.latin_america_noticias);
-
+     //   getSupportActionBar().hide();
 
 
 
@@ -58,6 +62,31 @@ public class LatinAmericaNoticiasActivity extends AppCompatActivity implements S
 
         LatinAmericaRequestManager manager = new LatinAmericaRequestManager(LatinAmericaNoticiasActivity.this);
         manager.getNewsHeadlines(listener, "ar", null);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // agregando un clik list para la opción seleccionada en la línea de abajo.
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.España:
+                Toast.makeText(getApplicationContext(),"Noticias España",Toast.LENGTH_LONG).show();
+                Intent i2 = new Intent(LatinAmericaNoticiasActivity.this, MainActivity.class);
+                startActivity(i2);
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //en la línea de abajo estamos inflando nuestro archivo de menú para mostrar nuestras opciones de menú.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     private final OnFetchDataListener<NewsApiResponse> listener =new OnFetchDataListener<NewsApiResponse>() {

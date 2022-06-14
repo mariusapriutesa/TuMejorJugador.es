@@ -115,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="349dp"
             android:layout_weight="1"
-            android:button="@drawable/ic_baseline_share_24"
+            android:drawableLeft="@drawable/ic_baseline_share_24"
             app:useMaterialThemeColors="false" />
     </LinearLayout>
 

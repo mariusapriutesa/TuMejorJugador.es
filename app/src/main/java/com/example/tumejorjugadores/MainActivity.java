@@ -101,19 +101,21 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 switch (menuItem.getItemId())
                 {
                     case R.id.menu_home :
-                        Toast.makeText(getApplicationContext(),"Home Panel is Open",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Noticias de latin America",Toast.LENGTH_LONG).show();
                         Intent i2 = new Intent(MainActivity.this, LatinAmericaNoticiasActivity.class);
                         startActivity(i2);
+
                         return true;
 
                     case R.id.idLogOut:
                         //mostrando a toast message en el usuario cerró la sesión en el interior al hacer clic.
-                        Toast.makeText(getApplicationContext(), "User Logged Out", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Te Has deconectado", Toast.LENGTH_LONG).show();
                         // En la línea inferior estamos cerrando la sesión de nuestra usuaria.
                         auth.signOut();
                         // en la línea de abajo estamos abriendo nuestra actividad de inicio de sesión.
                         Intent i = new Intent(MainActivity.this, com.example.tumejorjugadores.LoginActivity.class);
                         startActivity(i);
+                         finish();
                         return true;
 
                 }

@@ -18,6 +18,7 @@ public class LatinAmericaViewHolder extends RecyclerView.ViewHolder {
 
     public LatinAmericaViewHolder(@NonNull View itemView) {
         super(itemView);
+        //los componentes del RecycleView
         text_autor = itemView.findViewById(R.id.text_autor);
         img_headline = itemView.findViewById(R.id.img_headline);
         text_title = itemView.findViewById(R.id.text_title);
