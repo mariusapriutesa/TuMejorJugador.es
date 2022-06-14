@@ -17,6 +17,8 @@
         <activity
             android:name=".RegisterActivity"
             android:label="Register" />
+        <activity android:name=".ApiClases.LatinAmericaNoticiasDetailsActivity"></activity>
+        <activity android:name=".ApiClases.LatinAmericaNoticiasActivity"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">

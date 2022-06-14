@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">TuMejorJugador.es</string>
     <string name="title_activity_home">HomeActivity</string>
-    <string name="nav_header_title">Nevigation Drawer</string>
-    <string name="nav_header_subtitle">Navigation Drawer Sub Title</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_title">Bienvenido</string>
+    <string name="nav_header_subtitle">El correo del Usuario</string>
+    <string name="nav_header_desc">Bienvenido</string>
     <string name="action_settings">Settings</string>
-
+    <string name="api_key">2724554be2f848709ca094467e854312</string>
 
     <string name="open">Open</string>
     <string name="close">Close</string>
