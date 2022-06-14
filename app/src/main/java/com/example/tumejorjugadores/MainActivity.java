@@ -26,6 +26,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tumejorjugadores.ApiClases.LatinAmericaNoticiasActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -101,8 +102,10 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 {
                     case R.id.menu_home :
                         Toast.makeText(getApplicationContext(),"Home Panel is Open",Toast.LENGTH_LONG).show();
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
+                        Intent i2 = new Intent(MainActivity.this, LatinAmericaNoticiasActivity.class);
+                        startActivity(i2);
+                        return true;
+
                     case R.id.idLogOut:
                         //mostrando a toast message en el usuario cerró la sesión en el interior al hacer clic.
                         Toast.makeText(getApplicationContext(), "User Logged Out", Toast.LENGTH_LONG).show();
