@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
         // inicializando todas nuestras variables.
         userNameEdt = findViewById(R.id.idEdtUserName);
         //****
-        usuarioImg="sda";
+
         rolEdt = "Usuario";
 
         passwordEdt = findViewById(R.id.idEdtPassword);
@@ -111,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
                             // en la línea de abajo estamos comprobando si la tarea es exitosa o no.
                             if (task.isSuccessful()) {
 
-                                UsuarioRVModal usuarioRVModal = new UsuarioRVModal(usuarioId,userName, usuarioImg,passwordEdt.getText().toString(), rolEdt);
+                                UsuarioRVModal usuarioRVModal = new UsuarioRVModal(usuarioId,userName, passwordEdt.getText().toString(), rolEdt);
                                 loadingPB.setVisibility(View.GONE);
 
                                 firebaseDatabase.getReference("Usuarios").child(String.valueOf(usuarioId)).setValue(usuarioRVModal);

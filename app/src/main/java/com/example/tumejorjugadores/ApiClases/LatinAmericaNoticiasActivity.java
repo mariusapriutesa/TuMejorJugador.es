@@ -44,7 +44,7 @@ public class LatinAmericaNoticiasActivity extends AppCompatActivity implements S
 
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Fetching News...");
+        progressDialog.setTitle("Buscando noticias...");
         progressDialog.show();
 
 
@@ -126,7 +126,10 @@ public class LatinAmericaNoticiasActivity extends AppCompatActivity implements S
     public void onClick(View v) {
         Button button = (Button) v;
         String category = button.getText().toString();
-        progressDialog.setTitle("Fetching News Of " + category);
+
+
+
+        progressDialog.setTitle("Cogiendo noticias de " + category);
         progressDialog.show();
         LatinAmericaRequestManager manager = new LatinAmericaRequestManager(LatinAmericaNoticiasActivity.this);
         manager.getNewsHeadlines(listener, category, null);

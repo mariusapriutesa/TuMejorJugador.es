@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -21,7 +20,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -227,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         // en la línea de abajo estamos creando nuestro cuadro de diálogo de hoja inferior.
         final BottomSheetDialog bottomSheetTeachersDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
         //en la línea de abajo estamos inflando un archivo de diseño para su hoja inferior.
-        View layout = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_layout, homeRL);
+        View layout = LayoutInflater.from(this).inflate(R.layout.noticias_cardview, homeRL);
         // configurando la vista de contenido para la hoja inferior en la línea de abajo.
         bottomSheetTeachersDialog.setContentView(layout);
         // en la línea de abajo estamos configurando un cancelable
