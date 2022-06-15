@@ -84,11 +84,12 @@ public class EditJugadorActivity extends AppCompatActivity {
                 //en la línea de abajo estamos creando un mapa para pasar datos usando un par de clave y valor.
                 Map<String, Object> map = new HashMap<>();
                 map.put("jugadorName", jugadorName);
-                map.put("jugadorDescription", jugadorDesc);
                 map.put("jugadorFecha", jugadorFecha);
+                map.put("jugadorDescription", jugadorDesc);
                 map.put("jugadorImg", jugadorImg);
-                map.put("jugadorLink", jugadorLink);
                 map.put("jugadorId", jugadorID);
+                map.put("jugadorLink", jugadorLink);
+
 
                 //en la línea de abajo estamos llamando a una referencia de base de datos en el detector de eventos de valor agregado y en el método de cambio de datos
                 databaseReference.addValueEventListener(new ValueEventListener() {

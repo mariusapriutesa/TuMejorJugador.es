@@ -30,11 +30,11 @@ public class JugadorRVModal implements Parcelable {
 
     protected JugadorRVModal(Parcel in) {
         jugadorName = in.readString();
-        jugadorId = in.readString();
         jugadorDescription = in.readString();
         jugadorFecha = in.readString();
         jugadorImg = in.readString();
         jugadorLink = in.readString();
+        jugadorId = in.readString();
 
     }
 
@@ -96,6 +96,7 @@ public class JugadorRVModal implements Parcelable {
 
     public JugadorRVModal(String jugadorName, String jugadorDescription, String jugadorFecha, String jugadorImg, String jugadorLink, String jugadorId) {
         this.jugadorName = jugadorName;
+
         this.jugadorDescription = jugadorDescription;
         this.jugadorFecha = jugadorFecha;
         this.jugadorImg = jugadorImg;
@@ -111,10 +112,10 @@ public class JugadorRVModal implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(jugadorName);
-        dest.writeString(jugadorId);
         dest.writeString(jugadorDescription);
         dest.writeString(jugadorFecha);
         dest.writeString(jugadorImg);
         dest.writeString(jugadorLink);
+        dest.writeString(jugadorId);
     }
 }

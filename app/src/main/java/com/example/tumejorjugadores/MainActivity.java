@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         });
 
         // en la línea de abajo inicializando nuestra clase de adaptador.
-        jugadorRVAdapter = new JugadorRVAdapter(jugadorRVModalArrayList, this, this::onJugadorClick);
+        jugadorRVAdapter = new com.example.tumejorjugadores.JugadorRVAdapter(jugadorRVModalArrayList, this, this::onJugadorClick);
         // configurando el simulador de diseño para la vista del reciclador en la línea de abajo.
         jugadorRV.setLayoutManager(new LinearLayoutManager(this));
         //configurando el adaptador a recycler view abajo.
@@ -242,9 +242,15 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
 
         TextView fechaTV = layout.findViewById(R.id.idTVJugadorFecha);
         ImageView jugadorIV = layout.findViewById(R.id.idIVJugador);
+
+
+
         // en la línea de abajo estamos configurando datos para diferentes vistas en la línea de abajo.
+
         jugadorNameTV.setText(modal.getJugadorName());
+
         jugadorDescTV.setText(modal.getJugadorDescription());
+
         fechaTV.setText("Fecha:" + modal.getJugadorFecha());
         Picasso.get().load(modal.getJugadorImg()).placeholder(R.mipmap.img).into(jugadorIV);
         Button viewBtn = layout.findViewById(R.id.idBtnVIewDetails);

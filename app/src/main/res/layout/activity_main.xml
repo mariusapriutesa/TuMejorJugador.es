@@ -104,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:itemTextAppearance="@style/DrawerTheme"
-            app:theme="@style/DrawerTheme"
+            android:theme="@style/DrawerTheme"
             android:id="@+id/navmenu"
             app:menu="@menu/iconmenu"
             android:fitsSystemWindows="true"

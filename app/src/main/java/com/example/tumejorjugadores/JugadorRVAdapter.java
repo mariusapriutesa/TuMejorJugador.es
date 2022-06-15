@@ -56,8 +56,9 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         //configurando datos para nuestro elemento de RecyclerView en la línea de abajo.
         JugadorRVModal jugadorRVModal = jugadorRVModalArrayList.get(position);
-        holder.jugadorTV.setText(jugadorRVModal.getJugadorName());
+        holder.jugadorTVName.setText(jugadorRVModal.getJugadorName());
         holder.jugadorFechaTV.setText("" + jugadorRVModal.getJugadorFecha());
+
         Picasso.get().load(jugadorRVModal.getJugadorImg()).placeholder(R.mipmap.img).into(holder.jugadorIV);
         // agregando animación al los elementos de recycleView en la línea de abajo.
 
@@ -92,13 +93,13 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //creando variable para nuestra vista de imagen y vista de texto en la línea de abajo.
         private final ImageView jugadorIV;
-        private final TextView jugadorTV, jugadorFechaTV;
+        private final TextView jugadorTVName, jugadorFechaTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //initializing all our variables on below line.
             jugadorIV = itemView.findViewById(R.id.idIVJugador);
-            jugadorTV = itemView.findViewById(R.id.idTVJUgadorName);
+            jugadorTVName = itemView.findViewById(R.id.idTVJUgadorName);
             jugadorFechaTV = itemView.findViewById(R.id.idTVCouseFecha);
         }
     }

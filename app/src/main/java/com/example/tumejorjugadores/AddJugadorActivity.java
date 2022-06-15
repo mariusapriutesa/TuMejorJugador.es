@@ -24,7 +24,10 @@ import java.util.Locale;
 public class AddJugadorActivity extends AppCompatActivity {
     //creando variables para su botón, edite texto, base de datos firebase, referencia de base de datos, barra de progreso( la animacion).
     private Button addJugadorBtn;
-    private TextInputEditText jugadorNameEdt, jugadorDescEdt, jugadorImgEdt, jugadorLinkEdt;
+    private TextInputEditText jugadorNameEdt;
+    private TextInputEditText jugadorDescEdt;
+    private TextInputEditText jugadorImgEdt;
+    private TextInputEditText jugadorLinkEdt;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private ProgressBar loadingPB;
@@ -60,14 +63,11 @@ public class AddJugadorActivity extends AppCompatActivity {
                 String jugadorName = jugadorNameEdt.getText().toString();
                 String jugadorDesc = jugadorDescEdt.getText().toString();
                 String jugadorFecha = new SimpleDateFormat("yyyy/MM/dd  HH:mm", Locale.getDefault()).format(new Date());
-
                 String jugadorImg = jugadorImgEdt.getText().toString();
-
                 String jugadorLink = jugadorLinkEdt.getText().toString();
                 jugadorID = jugadorName;
-
                 //en la línea de abajo estamos pasando todos los datos a nuestra clase jugadorRVModal.
-                JugadorRVModal jugadorRVModal = new JugadorRVModal(jugadorID, jugadorName, jugadorDesc, jugadorFecha,  jugadorImg, jugadorLink);
+                JugadorRVModal jugadorRVModal = new JugadorRVModal( jugadorName, jugadorDesc, jugadorFecha,  jugadorImg, jugadorLink,jugadorID);
                 //en la línea de abajo estamos llamando a un evento de valor agregado para pasar datos a la base de datos de firebase.
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
