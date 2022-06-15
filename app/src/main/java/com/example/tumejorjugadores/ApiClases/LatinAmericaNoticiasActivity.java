@@ -31,7 +31,7 @@ import java.util.List;
 public class LatinAmericaNoticiasActivity extends AppCompatActivity implements SelectListener, View.OnClickListener {
     RecyclerView recyclerView;
     LatinAmericaAdapter latinAmericaAdapter;
-    Button btn1, btn2, btn3, btn4, btn5, btn6, btn7;
+    Button  ArgentinaBtn, VenezuelaBtn, MexicoBtn,  CubaBtn, ColumbiaBtn;
     ProgressDialog progressDialog;
     SearchView searchView;
     @Override
@@ -48,16 +48,16 @@ public class LatinAmericaNoticiasActivity extends AppCompatActivity implements S
         progressDialog.show();
 
 
-        btn2 = findViewById(R.id.btn_2);
-        btn2.setOnClickListener(this);
-        btn3 = findViewById(R.id.btn_3);
-        btn3.setOnClickListener(this);
-        btn4 = findViewById(R.id.btn_4);
-        btn4.setOnClickListener(this);
-        btn6 = findViewById(R.id.btn_6);
-        btn6.setOnClickListener(this);
-        btn7 = findViewById(R.id.btn_7);
-        btn7.setOnClickListener(this);
+        ArgentinaBtn = findViewById(R.id.btn_2);
+        ArgentinaBtn.setOnClickListener(this);
+        VenezuelaBtn = findViewById(R.id.btn_3);
+        VenezuelaBtn.setOnClickListener(this);
+        MexicoBtn = findViewById(R.id.btn_4);
+        MexicoBtn.setOnClickListener(this);
+        CubaBtn = findViewById(R.id.btn_6);
+        CubaBtn.setOnClickListener(this);
+        ColumbiaBtn = findViewById(R.id.btn_7);
+        ColumbiaBtn.setOnClickListener(this);
 
 
         LatinAmericaRequestManager manager = new LatinAmericaRequestManager(LatinAmericaNoticiasActivity.this);
@@ -96,7 +96,7 @@ public class LatinAmericaNoticiasActivity extends AppCompatActivity implements S
             showNews(data);
             progressDialog.dismiss();
             if (data.isEmpty()){
-                Toast.makeText(LatinAmericaNoticiasActivity.this, "No Data Found!", Toast.LENGTH_LONG).show();
+                Toast.makeText(LatinAmericaNoticiasActivity.this, "No se ha encontrado las noticias", Toast.LENGTH_LONG).show();
             }
         }
 

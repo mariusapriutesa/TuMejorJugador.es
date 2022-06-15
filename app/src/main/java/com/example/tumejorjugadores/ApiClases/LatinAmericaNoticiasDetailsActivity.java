@@ -27,21 +27,21 @@ public class LatinAmericaNoticiasDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.latin_america_noticias_detalles);
         headline = (NewsHeadline) getIntent().getSerializableExtra("data");
 
-        text_data = findViewById(R.id.text_desc_full);
-        text_published = findViewById(R.id.text_desc_published);
-        text_source = findViewById(R.id.text_desc_source);
-        text_title = findViewById(R.id.text_desc_title);
+        text_data = findViewById(R.id.noticia_desc_full);
+        text_published = findViewById(R.id.noticia_desc_published);
+        text_source = findViewById(R.id.noticia_desc_source);
+        text_title = findViewById(R.id.noticia_desc_title);
         img_news = findViewById(R.id.img_news);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-        Date date = null;// Obtendrá el objeto de fecha en relación con la zona horaria del servidor/cliente donde sea que se analice
+        Date date = null;
         try {
             date = dateFormat.parse(headline.getPublishedAt());
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm"); //Si necesita tiempo, simplemente ponga un formato específico para el tiempo como 'HH:mm:ss'
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
         String dateStr = formatter.format(date);
 
