@@ -18,23 +18,23 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.ViewHolder> {
+public class NoticiaRVAdapter extends RecyclerView.Adapter<NoticiaRVAdapter.ViewHolder> {
     public static int JugadorClickInterface;
-    private static ArrayList<JugadorRVModal> jugadorRVModalArrayList;
+    private static ArrayList<NoticiaRVModal> noticiaRVModalArrayList;
     //creando variables para nuestra lista, contexto, interfaz y posición.
 
     private final Context context;
     private final JugadorClickInterface  jugadorClickInterface;
     int lastPos = -1;
 
-    public void setFilteredList(ArrayList<JugadorRVModal> filteredList){
-    jugadorRVModalArrayList=filteredList;
+    public void setFilteredList(ArrayList<NoticiaRVModal> filteredList){
+    noticiaRVModalArrayList =filteredList;
    notifyDataSetChanged();
     }
 
     //creando los  constructores.
-    public JugadorRVAdapter(ArrayList<JugadorRVModal> jugadorRVModalArrayList, Context context, JugadorClickInterface jugadorClickInterface)  {
-        this.jugadorRVModalArrayList = jugadorRVModalArrayList;
+    public NoticiaRVAdapter(ArrayList<NoticiaRVModal> noticiaRVModalArrayList, Context context, JugadorClickInterface jugadorClickInterface)  {
+        this.noticiaRVModalArrayList = noticiaRVModalArrayList;
 
         this.context = context;
 
@@ -55,15 +55,15 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         //configurando datos para nuestro elemento de RecyclerView en la línea de abajo.
-        JugadorRVModal jugadorRVModal = jugadorRVModalArrayList.get(position);
-        holder.jugadorTVName.setText(jugadorRVModal.getJugadorName());
-        holder.jugadorFechaTV.setText("" + jugadorRVModal.getJugadorFecha());
+        NoticiaRVModal noticiaRVModal = noticiaRVModalArrayList.get(position);
+        holder.jugadorTVName.setText(noticiaRVModal.getJugadorName());
+        holder.jugadorFechaTV.setText("" + noticiaRVModal.getJugadorFecha());
 
-        Picasso.get().load(jugadorRVModal.getJugadorImg()).placeholder(R.mipmap.img).into(holder.jugadorIV);
+        Picasso.get().load(noticiaRVModal.getJugadorImg()).placeholder(R.mipmap.img).into(holder.jugadorIV);
         // agregando animación al los elementos de recycleView en la línea de abajo.
 
         setAnimation(holder.itemView, position);
-        Intent i2 =new Intent(String.valueOf(JugadorRVAdapter.this));
+        Intent i2 =new Intent(String.valueOf(NoticiaRVAdapter.this));
         i2.putExtra("posicion",position);
         holder.jugadorIV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +88,7 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
 
     @Override
     public int getItemCount() {
-        return jugadorRVModalArrayList.size();
+        return noticiaRVModalArrayList.size();
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //creando variable para nuestra vista de imagen y vista de texto en la línea de abajo.

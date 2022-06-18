@@ -17,7 +17,7 @@ import com.example.tumejorjugadores.Interfaces.SelectListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
+//he usuado esta pagina para hacer el Api https://newsapi.org/docs
 public class LatinAmericaAdapter extends RecyclerView.Adapter<LatinAmericaViewHolder> {
     private Context context;
     private List<NewsHeadline> headlineList;

@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class AddJugadorActivity extends AppCompatActivity {
+public class AddNoticiaActivity extends AppCompatActivity {
     //creando variables para su botón, edite texto, base de datos firebase, referencia de base de datos, barra de progreso( la animacion).
     private Button addJugadorBtn;
     private TextInputEditText jugadorNameEdt;
@@ -67,24 +67,24 @@ public class AddJugadorActivity extends AppCompatActivity {
                 String jugadorLink = jugadorLinkEdt.getText().toString();
                 jugadorID = jugadorName;
                 //en la línea de abajo estamos pasando todos los datos a nuestra clase jugadorRVModal.
-                JugadorRVModal jugadorRVModal = new JugadorRVModal( jugadorName, jugadorDesc, jugadorFecha,  jugadorImg, jugadorLink,jugadorID);
+                NoticiaRVModal noticiaRVModal = new NoticiaRVModal( jugadorName, jugadorDesc, jugadorFecha,  jugadorImg, jugadorLink,jugadorID);
                 //en la línea de abajo estamos llamando a un evento de valor agregado para pasar datos a la base de datos de firebase.
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                         //en la línea de abajo estamos configurando datos en nuestra base de datos de firebase.
-                        databaseReference.child(jugadorID).setValue(jugadorRVModal);
+                        databaseReference.child(jugadorID).setValue(noticiaRVModal);
                         //displaying a toast message.
-                        Toast.makeText(AddJugadorActivity.this, "Noticia Añadida..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddNoticiaActivity.this, "Noticia Añadida..", Toast.LENGTH_SHORT).show();
                         //starting el main activity.
-                        startActivity(new Intent(AddJugadorActivity.this, com.example.tumejorjugadores.MainActivity.class));
+                        startActivity(new Intent(AddNoticiaActivity.this, com.example.tumejorjugadores.MainActivity.class));
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         //mostrando un mensaje de error en la línea de abajo.
-                        Toast.makeText(AddJugadorActivity.this, "Error en añadir la noticia..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddNoticiaActivity.this, "Error en añadir la noticia..", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

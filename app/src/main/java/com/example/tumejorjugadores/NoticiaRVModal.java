@@ -3,7 +3,7 @@ package com.example.tumejorjugadores;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class JugadorRVModal implements Parcelable {
+public class NoticiaRVModal implements Parcelable {
     //creando variables para nuestros campos.
     private String jugadorName;
     private String jugadorDescription;
@@ -24,11 +24,11 @@ public class JugadorRVModal implements Parcelable {
 
 
     //creando un constructor vacio.
-    public JugadorRVModal() {
+    public NoticiaRVModal() {
 
     }
 
-    protected JugadorRVModal(Parcel in) {
+    protected NoticiaRVModal(Parcel in) {
         jugadorName = in.readString();
         jugadorDescription = in.readString();
         jugadorFecha = in.readString();
@@ -38,15 +38,15 @@ public class JugadorRVModal implements Parcelable {
 
     }
 
-    public static final Creator<JugadorRVModal> CREATOR = new Creator<JugadorRVModal>() {
+    public static final Creator<NoticiaRVModal> CREATOR = new Creator<NoticiaRVModal>() {
         @Override
-        public JugadorRVModal createFromParcel(Parcel in) {
-            return new JugadorRVModal(in);
+        public NoticiaRVModal createFromParcel(Parcel in) {
+            return new NoticiaRVModal(in);
         }
 
         @Override
-        public JugadorRVModal[] newArray(int size) {
-            return new JugadorRVModal[size];
+        public NoticiaRVModal[] newArray(int size) {
+            return new NoticiaRVModal[size];
         }
     };
 
@@ -94,7 +94,7 @@ public class JugadorRVModal implements Parcelable {
     }
 
 
-    public JugadorRVModal(String jugadorName, String jugadorDescription, String jugadorFecha, String jugadorImg, String jugadorLink, String jugadorId) {
+    public NoticiaRVModal(String jugadorName, String jugadorDescription, String jugadorFecha, String jugadorImg, String jugadorLink, String jugadorId) {
         this.jugadorName = jugadorName;
 
         this.jugadorDescription = jugadorDescription;

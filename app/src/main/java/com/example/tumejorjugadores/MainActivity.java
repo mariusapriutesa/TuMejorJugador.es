@@ -39,7 +39,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements com.example.tumejorjugadores.JugadorRVAdapter.JugadorClickInterface {
+public class MainActivity extends AppCompatActivity implements NoticiaRVAdapter.JugadorClickInterface {
 
     //creando variables para fab, firebase database, progress bar, list, adapter,firebase auth, recycler view and relative layout.
     private FloatingActionButton addJugadorFAB;
@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     private RecyclerView jugadorRV;//eee
     private SearchView searchView;///eee
     private ProgressBar loadingPB;
-    private ArrayList<JugadorRVModal> jugadorRVModalArrayList;
+    private ArrayList<NoticiaRVModal> noticiaRVModalArrayList;
     private TextView usuarioName;
-    private JugadorRVAdapter jugadorRVAdapter;
+    private NoticiaRVAdapter noticiaRVAdapter;
     private RelativeLayout homeRL;
     NavigationView nav;
     ActionBarDrawerToggle toggle;
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         searchView.clearFocus();
         firebaseDatabase = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
-        jugadorRVModalArrayList = new ArrayList<JugadorRVModal>();
+        noticiaRVModalArrayList = new ArrayList<NoticiaRVModal>();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -156,24 +156,24 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
             public void onClick(View v) {
                 //validar**
                 //abrir una nueva actividad para agregar un jugador.
-                Intent i = new Intent(MainActivity.this, AddJugadorActivity.class);
+                Intent i = new Intent(MainActivity.this, AddNoticiaActivity.class);
                 startActivity(i);
             }
         });
 
         // en la línea de abajo inicializando nuestra clase de adaptador.
-        jugadorRVAdapter = new com.example.tumejorjugadores.JugadorRVAdapter(jugadorRVModalArrayList, this, this::onJugadorClick);
+        noticiaRVAdapter = new NoticiaRVAdapter(noticiaRVModalArrayList, this, this::onJugadorClick);
         // configurando el simulador de diseño para la vista del reciclador en la línea de abajo.
         jugadorRV.setLayoutManager(new LinearLayoutManager(this));
         //configurando el adaptador a recycler view abajo.
-        jugadorRV.setAdapter(jugadorRVAdapter);
+        jugadorRV.setAdapter(noticiaRVAdapter);
         // en la línea de abajo llamando a un método para obtener jugadores de la base de datos.
         getJugadores();
     }
 
     private void getJugadores() {
         // en la línea de abajo limpiando nuestra lista.
-        jugadorRVModalArrayList.clear();
+        noticiaRVModalArrayList.clear();
         // en la línea de abajo estamos llamando al método add child event listener para leer los datos.
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -181,22 +181,22 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
                 //en la línea de abajo estamos ocultando nuestra barra de progreso.
                 loadingPB.setVisibility(View.GONE);
                 // agregando una instantánea a nuestra lista de matrices en la línea de abajo.
-                jugadorRVModalArrayList.add(snapshot.getValue(JugadorRVModal.class));
+                noticiaRVModalArrayList.add(snapshot.getValue(NoticiaRVModal.class));
                 //notificando a nuestro adaptador que los datos han cambiado.
-                jugadorRVAdapter.notifyDataSetChanged();
+                noticiaRVAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 //este método se llama cuando se agrega un nuevo hijo, estamos notificando a nuestro adaptador y haciendo que la visibilidad de la barra de progreso desaparezca.
                 loadingPB.setVisibility(View.GONE);
-                jugadorRVAdapter.notifyDataSetChanged();
+                noticiaRVAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                 // notificando a nuestro adaptador cuando se elimine el niño.
-                jugadorRVAdapter.notifyDataSetChanged();
+                noticiaRVAdapter.notifyDataSetChanged();
                 loadingPB.setVisibility(View.GONE);
 
             }
@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 // notificando a nuestro adaptador cuando se mueve al niño.
-                jugadorRVAdapter.notifyDataSetChanged();
+                noticiaRVAdapter.notifyDataSetChanged();
                 loadingPB.setVisibility(View.GONE);
             }
 
@@ -219,9 +219,9 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
     @Override
     public void onJugadorClick(int position) {
         // llamando a un método para mostrar una hoja inferior en la línea de abajo.
-        displayBottomSheet(jugadorRVModalArrayList.get(position));
+        noticiasCardView(noticiaRVModalArrayList.get(position));
     }
-    private void displayBottomSheet(JugadorRVModal modal) {
+    private void noticiasCardView(NoticiaRVModal modal) {
         // en la línea de abajo estamos creando nuestro cuadro de diálogo de hoja inferior.
         final BottomSheetDialog bottomSheetTeachersDialog = new BottomSheetDialog(this, R.style.BottomSheetDialogTheme);
         //en la línea de abajo estamos inflando un archivo de diseño para su hoja inferior.
@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
             @Override
             public void onClick(View v) {
                 //en la línea de abajo estamos abriendo nuestro EditJugadorActivity en la línea de abajo.
-                Intent i = new Intent(MainActivity.this, EditJugadorActivity.class);
+                Intent i = new Intent(MainActivity.this, EditNoticiaActivity.class);
                 //en la línea de abajo estamos pasando nuestro jugador modal
                 i.putExtra("jugador", modal);
                 startActivity(i);
@@ -271,14 +271,14 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
             @Override
             public void onClick(View v) {
                 String hh= jugadorNameTV.getText().toString();
-
+                String titl= jugadorDescTV.getText().toString();
                 Intent intentShare = new Intent(Intent.ACTION_SEND);
                 intentShare.setType("text/plain");
 
-                intentShare.putExtra(Intent.EXTRA_SUBJECT,"My Subject Here ... ");
-                intentShare.putExtra(Intent.EXTRA_TEXT,hh);
+                intentShare.putExtra(Intent.EXTRA_SUBJECT,hh);
+                intentShare.putExtra(Intent.EXTRA_TEXT,titl);
 
-                startActivity(Intent.createChooser(intentShare, "Shared the textt ..."));
+                startActivity(Intent.createChooser(intentShare, "Compartiendo el texto ..."));
 
             }
         });
@@ -300,8 +300,8 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
 //search
     public void filterlist(String strSearch) {
         //RECIBIMOS POR PARAMETRO EL TEXTO DEL BUSCADOR
-        ArrayList<com.example.tumejorjugadores.JugadorRVModal> filteredList = new ArrayList<>();
-        for (JugadorRVModal j: jugadorRVModalArrayList) {
+        ArrayList<NoticiaRVModal> filteredList = new ArrayList<>();
+        for (NoticiaRVModal j: noticiaRVModalArrayList) {
             if (j.getJugadorName().toLowerCase().contains(strSearch.toLowerCase())) {
                 filteredList.add(j);
             }
@@ -310,7 +310,7 @@ public class MainActivity extends AppCompatActivity implements com.example.tumej
         if (filteredList.isEmpty()) {
                Toast.makeText(this,"No date fond", Toast.LENGTH_SHORT).show();
             } else { //SI RECIBE TEXTO, LIMPIAMOS LA LISTA, Y VAMOS AÑADIENDO LAS NOTICIAS QUE CONTENGAN ESE TEXTO
-            jugadorRVAdapter.setFilteredList(filteredList);
+            noticiaRVAdapter.setFilteredList(filteredList);
 
             }
 

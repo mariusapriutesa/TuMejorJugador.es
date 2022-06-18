@@ -9,10 +9,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TuMejorJugadores">
         <activity
-            android:name=".EditJugadorActivity"
+            android:name=".EditNoticiaActivity"
             android:label="Edit Noticia" />
         <activity
-            android:name=".AddJugadorActivity"
+            android:name=".AddNoticiaActivity"
             android:label="Add Noticia" />
         <activity
             android:name=".RegisterActivity"
