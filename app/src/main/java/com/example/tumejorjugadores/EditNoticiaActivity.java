@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class EditJugadorActivity extends AppCompatActivity {
+public class EditNoticiaActivity extends AppCompatActivity {
 
     //iniciando variables para nuestro texto de edición, base de datos firebase, referencia de base de datos, jugadorRvModal y la bara de progreso.
     private TextInputEditText jugadorNameEdt;
@@ -33,7 +33,7 @@ public class EditJugadorActivity extends AppCompatActivity {
     private TextInputEditText jugadorLinkEdt;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    JugadorRVModal jugadorRVModal;
+    NoticiaRVModal noticiaRVModal;
     private ProgressBar loadingPB;
     //creating a string para nuestro jugador id.
     private String jugadorID;
@@ -53,18 +53,18 @@ public class EditJugadorActivity extends AppCompatActivity {
         loadingPB = findViewById(R.id.idPBLoading);
         firebaseDatabase = FirebaseDatabase.getInstance();
         //en la línea de abajo estamos obteniendo nuestra clase modal en la que hemos pasado.
-        jugadorRVModal = getIntent().getParcelableExtra("jugador");
+        noticiaRVModal = getIntent().getParcelableExtra("jugador");
         Button deleteJugadorBtn = findViewById(R.id.idBtnDeleteJugador);
 
-        if (jugadorRVModal != null) {
+        if (noticiaRVModal != null) {
             //en la línea de abajo estamos configurando datos para nuestro texto de edición de nuestra clase modal.
-            jugadorNameEdt.setText(jugadorRVModal.getJugadorName());
+            jugadorNameEdt.setText(noticiaRVModal.getJugadorName());
             //jugadorFechaEdt.setText(jugadorRVModal.getJugadorFecha());
 
-            jugadorImgEdt.setText(jugadorRVModal.getJugadorImg());
-            jugadorLinkEdt.setText(jugadorRVModal.getJugadorLink());
-            jugadorDescEdt.setText(jugadorRVModal.getJugadorDescription());
-            jugadorID = jugadorRVModal.getJugadorId();
+            jugadorImgEdt.setText(noticiaRVModal.getJugadorImg());
+            jugadorLinkEdt.setText(noticiaRVModal.getJugadorLink());
+            jugadorDescEdt.setText(noticiaRVModal.getJugadorDescription());
+            jugadorID = noticiaRVModal.getJugadorId();
         }
 
         //en la línea de abajo estamos inicializando nuestra referencia de base de datos y estamos agregando un hijo como nuestra identificación de jugador.
@@ -84,11 +84,12 @@ public class EditJugadorActivity extends AppCompatActivity {
                 //en la línea de abajo estamos creando un mapa para pasar datos usando un par de clave y valor.
                 Map<String, Object> map = new HashMap<>();
                 map.put("jugadorName", jugadorName);
-                map.put("jugadorDescription", jugadorDesc);
                 map.put("jugadorFecha", jugadorFecha);
+                map.put("jugadorDescription", jugadorDesc);
                 map.put("jugadorImg", jugadorImg);
-                map.put("jugadorLink", jugadorLink);
                 map.put("jugadorId", jugadorID);
+                map.put("jugadorLink", jugadorLink);
+
 
                 //en la línea de abajo estamos llamando a una referencia de base de datos en el detector de eventos de valor agregado y en el método de cambio de datos
                 databaseReference.addValueEventListener(new ValueEventListener() {
@@ -99,15 +100,15 @@ public class EditJugadorActivity extends AppCompatActivity {
                         //añadiendo un mapa a nuestra base de datos.
                         databaseReference.updateChildren(map);
                         //en la línea de abajo estamos mostrando un mensaje de brindis.
-                        Toast.makeText(EditJugadorActivity.this, "Actualizando Jugador...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditNoticiaActivity.this, "Actualizando Jugador...", Toast.LENGTH_SHORT).show();
                         //abrir una nueva actividad después de actualizar nuestro Jugador.
-                        startActivity(new Intent(EditJugadorActivity.this, com.example.tumejorjugadores.MainActivity.class));
+                        startActivity(new Intent(EditNoticiaActivity.this, com.example.tumejorjugadores.MainActivity.class));
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         //mostrando un mensaje de falla en el brindis.
-                        Toast.makeText(EditJugadorActivity.this, "Ha fracasado la actualizacion del jugador..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditNoticiaActivity.this, "Ha fracasado la actualizacion de la Noticia..", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -128,8 +129,8 @@ public class EditJugadorActivity extends AppCompatActivity {
         // en la línea de abajo llamando a un método para borrar el jugador.
         databaseReference.removeValue();
         //mostrando un mensaje de brindis en la línea de abajo.
-        Toast.makeText(this, "Jugador Deleted..", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "He borrado la noticia..", Toast.LENGTH_SHORT).show();
         //abrir una actividad principal en la línea de abajo.
-        startActivity(new Intent(EditJugadorActivity.this, com.example.tumejorjugadores.MainActivity.class));
+        startActivity(new Intent(EditNoticiaActivity.this, com.example.tumejorjugadores.MainActivity.class));
     }
 }

@@ -2,44 +2,39 @@ package com.example.tumejorjugadores;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.ViewHolder> {
-    private static ArrayList<JugadorRVModal> jugadorRVModalArrayList;
+public class NoticiaRVAdapter extends RecyclerView.Adapter<NoticiaRVAdapter.ViewHolder> {
+    public static int JugadorClickInterface;
+    private static ArrayList<NoticiaRVModal> noticiaRVModalArrayList;
     //creando variables para nuestra lista, contexto, interfaz y posición.
 
-    private Context context;
-    private JugadorClickInterface jugadorClickInterface;
-    MainActivity adapter;
+    private final Context context;
+    private final JugadorClickInterface  jugadorClickInterface;
     int lastPos = -1;
-    DatabaseReference dataref;
 
-    public void setFilteredList(ArrayList<JugadorRVModal> filteredList){
-    jugadorRVModalArrayList=filteredList;
+    public void setFilteredList(ArrayList<NoticiaRVModal> filteredList){
+    noticiaRVModalArrayList =filteredList;
    notifyDataSetChanged();
     }
 
     //creando los  constructores.
-    public JugadorRVAdapter(ArrayList<JugadorRVModal> jugadorRVModalArrayList, Context context, JugadorClickInterface jugadorClickInterface)  {
-        this.jugadorRVModalArrayList = jugadorRVModalArrayList;
+    public NoticiaRVAdapter(ArrayList<NoticiaRVModal> noticiaRVModalArrayList, Context context, JugadorClickInterface jugadorClickInterface)  {
+        this.noticiaRVModalArrayList = noticiaRVModalArrayList;
 
         this.context = context;
 
@@ -59,26 +54,26 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String currentUserid=user.getUid();
-        int value = (int) holder.getAdapterPosition();
-        String vall=value+"";
-        //final  String postkey=dataref.getRef(value.toString).getKey();
-
-
-
         //configurando datos para nuestro elemento de RecyclerView en la línea de abajo.
-        JugadorRVModal jugadorRVModal = jugadorRVModalArrayList.get(position);
-        holder.jugadorTV.setText(jugadorRVModal.getJugadorName());
-        holder.jugadorFechaTV.setText("" + jugadorRVModal.getJugadorFecha());
-        Picasso.get().load(jugadorRVModal.getJugadorImg()).placeholder(R.mipmap.img).into(holder.jugadorIV);
+        NoticiaRVModal noticiaRVModal = noticiaRVModalArrayList.get(position);
+        holder.jugadorTVName.setText(noticiaRVModal.getJugadorName());
+        holder.jugadorFechaTV.setText("" + noticiaRVModal.getJugadorFecha());
+
+        Picasso.get().load(noticiaRVModal.getJugadorImg()).placeholder(R.mipmap.img).into(holder.jugadorIV);
         // agregando animación al los elementos de recycleView en la línea de abajo.
+
         setAnimation(holder.itemView, position);
+        Intent i2 =new Intent(String.valueOf(NoticiaRVAdapter.this));
+        i2.putExtra("posicion",position);
         holder.jugadorIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 jugadorClickInterface.onJugadorClick(position);
+
+
+
             }
+
         });
     }
 
@@ -93,25 +88,18 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
 
     @Override
     public int getItemCount() {
-        return jugadorRVModalArrayList.size();
+        return noticiaRVModalArrayList.size();
     }
-
-
-
-
-
-    ///***********************
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //creando variable para nuestra vista de imagen y vista de texto en la línea de abajo.
-        private ImageView jugadorIV;
-        private TextView jugadorTV, jugadorFechaTV;
+        private final ImageView jugadorIV;
+        private final TextView jugadorTVName, jugadorFechaTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //initializing all our variables on below line.
             jugadorIV = itemView.findViewById(R.id.idIVJugador);
-            jugadorTV = itemView.findViewById(R.id.idTVJUgadorName);
+            jugadorTVName = itemView.findViewById(R.id.idTVJUgadorName);
             jugadorFechaTV = itemView.findViewById(R.id.idTVCouseFecha);
         }
     }
@@ -119,6 +107,8 @@ public class JugadorRVAdapter extends RecyclerView.Adapter<JugadorRVAdapter.View
     //creando una interfaz para hacer clic
     public interface JugadorClickInterface {
         void onJugadorClick(int position);
+
     }
+
 
 }

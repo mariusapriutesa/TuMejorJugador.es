@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Login Successful..", Toast.LENGTH_SHORT).show();
                             // En la línea de abajo estamos abriendo nuestra mainactivity.
                             Intent i = new Intent(LoginActivity.this, com.example.tumejorjugadores.MainActivity.class);
-                            i.putExtra("usuarioId",String.valueOf(usuarioId));
+                            i.putExtra("usuarioId",usuarioId);
 
                             startActivity(i);
                             finish();

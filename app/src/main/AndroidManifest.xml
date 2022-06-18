@@ -9,14 +9,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TuMejorJugadores">
         <activity
-            android:name=".EditJugadorActivity"
+            android:name=".EditNoticiaActivity"
             android:label="Edit Noticia" />
         <activity
-            android:name=".AddJugadorActivity"
+            android:name=".AddNoticiaActivity"
             android:label="Add Noticia" />
         <activity
             android:name=".RegisterActivity"
             android:label="Register" />
+        <activity android:name=".ApiClases.LatinAmericaNoticiasDetailsActivity"
+            android:label="LatinAmericaNoticiasDetails"
+
+            />
+        <activity android:name=".ApiClases.LatinAmericaNoticiasActivity"
+            android:label="Los ultimos noticias en Lat.Am."
+
+
+            />
         <activity
             android:name=".LoginActivity"
             android:exported="true">

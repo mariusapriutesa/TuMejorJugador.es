@@ -1,11 +1,9 @@
 package com.example.tumejorjugadores;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -23,11 +21,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class AddJugadorActivity extends AppCompatActivity {
-    DatePickerDialog.OnDateSetListener setListener;
+public class AddNoticiaActivity extends AppCompatActivity {
     //creando variables para su botón, edite texto, base de datos firebase, referencia de base de datos, barra de progreso( la animacion).
     private Button addJugadorBtn;
-    private TextInputEditText jugadorNameEdt, jugadorDescEdt, jugadorImgEdt, jugadorLinkEdt;
+    private TextInputEditText jugadorNameEdt;
+    private TextInputEditText jugadorDescEdt;
+    private TextInputEditText jugadorImgEdt;
+    private TextInputEditText jugadorLinkEdt;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private ProgressBar loadingPB;
@@ -63,33 +63,28 @@ public class AddJugadorActivity extends AppCompatActivity {
                 String jugadorName = jugadorNameEdt.getText().toString();
                 String jugadorDesc = jugadorDescEdt.getText().toString();
                 String jugadorFecha = new SimpleDateFormat("yyyy/MM/dd  HH:mm", Locale.getDefault()).format(new Date());
-
                 String jugadorImg = jugadorImgEdt.getText().toString();
-
                 String jugadorLink = jugadorLinkEdt.getText().toString();
                 jugadorID = jugadorName;
-
-
-
                 //en la línea de abajo estamos pasando todos los datos a nuestra clase jugadorRVModal.
-                JugadorRVModal jugadorRVModal = new JugadorRVModal(jugadorID, jugadorName, jugadorDesc, jugadorFecha,  jugadorImg, jugadorLink);
+                NoticiaRVModal noticiaRVModal = new NoticiaRVModal( jugadorName, jugadorDesc, jugadorFecha,  jugadorImg, jugadorLink,jugadorID);
                 //en la línea de abajo estamos llamando a un evento de valor agregado para pasar datos a la base de datos de firebase.
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                         //en la línea de abajo estamos configurando datos en nuestra base de datos de firebase.
-                        databaseReference.child(jugadorID).setValue(jugadorRVModal);
+                        databaseReference.child(jugadorID).setValue(noticiaRVModal);
                         //displaying a toast message.
-                        Toast.makeText(AddJugadorActivity.this, "Noticia Añadida..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddNoticiaActivity.this, "Noticia Añadida..", Toast.LENGTH_SHORT).show();
                         //starting el main activity.
-                        startActivity(new Intent(AddJugadorActivity.this, com.example.tumejorjugadores.MainActivity.class));
+                        startActivity(new Intent(AddNoticiaActivity.this, com.example.tumejorjugadores.MainActivity.class));
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         //mostrando un mensaje de error en la línea de abajo.
-                        Toast.makeText(AddJugadorActivity.this, "Error en añadir la noticia..", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddNoticiaActivity.this, "Error en añadir la noticia..", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

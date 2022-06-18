@@ -3,8 +3,8 @@ package com.example.tumejorjugadores;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class JugadorRVModal implements Parcelable {
-    //creating variables for our different fields.
+public class NoticiaRVModal implements Parcelable {
+    //creando variables para nuestros campos.
     private String jugadorName;
     private String jugadorDescription;
     private String jugadorFecha;
@@ -24,29 +24,29 @@ public class JugadorRVModal implements Parcelable {
 
 
     //creando un constructor vacio.
-    public JugadorRVModal() {
+    public NoticiaRVModal() {
 
     }
 
-    protected JugadorRVModal(Parcel in) {
+    protected NoticiaRVModal(Parcel in) {
         jugadorName = in.readString();
-        jugadorId = in.readString();
         jugadorDescription = in.readString();
         jugadorFecha = in.readString();
         jugadorImg = in.readString();
         jugadorLink = in.readString();
+        jugadorId = in.readString();
 
     }
 
-    public static final Creator<JugadorRVModal> CREATOR = new Creator<JugadorRVModal>() {
+    public static final Creator<NoticiaRVModal> CREATOR = new Creator<NoticiaRVModal>() {
         @Override
-        public JugadorRVModal createFromParcel(Parcel in) {
-            return new JugadorRVModal(in);
+        public NoticiaRVModal createFromParcel(Parcel in) {
+            return new NoticiaRVModal(in);
         }
 
         @Override
-        public JugadorRVModal[] newArray(int size) {
-            return new JugadorRVModal[size];
+        public NoticiaRVModal[] newArray(int size) {
+            return new NoticiaRVModal[size];
         }
     };
 
@@ -94,8 +94,9 @@ public class JugadorRVModal implements Parcelable {
     }
 
 
-    public JugadorRVModal(String jugadorName, String jugadorDescription, String jugadorFecha, String jugadorImg, String jugadorLink, String jugadorId) {
+    public NoticiaRVModal(String jugadorName, String jugadorDescription, String jugadorFecha, String jugadorImg, String jugadorLink, String jugadorId) {
         this.jugadorName = jugadorName;
+
         this.jugadorDescription = jugadorDescription;
         this.jugadorFecha = jugadorFecha;
         this.jugadorImg = jugadorImg;
@@ -111,10 +112,10 @@ public class JugadorRVModal implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(jugadorName);
-        dest.writeString(jugadorId);
         dest.writeString(jugadorDescription);
         dest.writeString(jugadorFecha);
         dest.writeString(jugadorImg);
         dest.writeString(jugadorLink);
+        dest.writeString(jugadorId);
     }
 }
