@@ -3,6 +3,7 @@ Proyecto TFG, aplicacion que muestra noticias deportivas.
 
 
  - Permisos que necesita la aplicación para su correcto funcionamiento, como son:
+ - 
 <intent-filter>
    <action android:name="android.intent.action.MAIN" />
 
