@@ -11,9 +11,7 @@ Proyecto TFG, aplicacion que muestra noticias deportivas.
 </intent-filter>
 
 
-
 En la carpeta Grandle Scripts, se almacenan los ficheros Grandle, los cuales permiten compilar y construir la aplicación.
-
 
 
 *En nuestro caso en android build.gradle(module) hay que añadir las siguientes dependencias :
