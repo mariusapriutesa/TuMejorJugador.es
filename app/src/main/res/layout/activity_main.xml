@@ -91,12 +91,12 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
+                android:contentDescription="TODO"
                 android:src="@drawable/ic_add"
                 app:background="@color/black_shade_1"
                 app:backgroundTint="@color/black_shade_2"
                 app:tint="@color/white"
-                tools:ignore="SpeakableTextPresentCheck"
-                android:contentDescription="TODO" />
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </RelativeLayout>
 

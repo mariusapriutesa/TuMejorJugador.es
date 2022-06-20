@@ -89,8 +89,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 //***
                FirebaseDatabase database=firebaseDatabase;
-                String userName2=userName.replace("@","0");
-                userName2 = userName2.replace(".","0");
+                String userName2=userName.replace("@","Ñ");
+                userName2 = userName2.replace(".","Ç");
                 usuarioId =userName2;
                 String rolEdt="Usuario";
                 usuarioImg="sda";

@@ -103,10 +103,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //in on start method checking if the user is already sign in.
+        // en el método de inicio verificando si el usuario ya inició sesión.
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            //if the user is not null then we are opening a main activity on below line.
+            //si el usuario no es nulo, estamos abriendo una actividad principal en la línea de abajo.
             Intent i = new Intent(LoginActivity.this, com.example.tumejorjugadores.MainActivity.class);
             startActivity(i);
             this.finish();

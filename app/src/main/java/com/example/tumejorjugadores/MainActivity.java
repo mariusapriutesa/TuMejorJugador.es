@@ -3,6 +3,7 @@ package com.example.tumejorjugadores;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +36,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -86,9 +88,11 @@ public class MainActivity extends AppCompatActivity implements NoticiaRVAdapter.
         if (user != null) {
                         String userEmail = user.getEmail();
                         usuarioName.setText(userEmail);
-                    } else {
-                        // No user is signed in
                     }
+
+
+
+
 
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -255,10 +259,44 @@ public class MainActivity extends AppCompatActivity implements NoticiaRVAdapter.
         Button editBtn = layout.findViewById(R.id.idBtnEditJugador);
         Button compartirBtn= layout.findViewById(R.id.checkBox);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        mDatabase=FirebaseDatabase.getInstance().getReference();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        String userEmail = user.getEmail();
+
+
+
+
+
+
+
+
+        if (userEmail.equals("admin01@gmail.com")){
+            addJugadorFAB.setVisibility(View.VISIBLE);
+            editBtn.setVisibility(View.VISIBLE);
+        }else{
+            addJugadorFAB.setVisibility(View.GONE);
+            editBtn.setVisibility(View.GONE);
+        }
         //agregando el click listener para nuestro edit button.
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+           //     Log.i("nombre", nombre);
                 //en la línea de abajo estamos abriendo nuestro EditJugadorActivity en la línea de abajo.
                 Intent i = new Intent(MainActivity.this, EditNoticiaActivity.class);
                 //en la línea de abajo estamos pasando nuestro jugador modal
@@ -282,7 +320,16 @@ public class MainActivity extends AppCompatActivity implements NoticiaRVAdapter.
 
             }
         });
-        editBtn.setVisibility(View.VISIBLE);
+
+
+
+
+
+
+
+
+
+
         //adding click listener para nuestro botón de vista en la línea de abajo.
         viewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
